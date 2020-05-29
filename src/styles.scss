@@ -1,2 +1,30 @@
+@import "~@angular/material/theming";
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; }
+
+@import './app/components/ant-grid/ant-grid.theme';
+
+$custom-typography: mat-typography-config(
+  $font-family: "Quicksand"
+);
+
+@include mat-core($custom-typography);
+
+.dark  {
+  $dark-primary: mat-palette($mat-purple);
+  $dark-accent: mat-palette($mat-green);
+  $dark-warn: mat-palette($mat-red);
+  $theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include angular-material-theme($theme);
+  @include ant-grid-theme($theme);
+}
+
+.light {
+  $light-primary: mat-palette($mat-deep-purple);
+  $light-accent: mat-palette($mat-amber);
+  $light-warn: mat-palette($mat-red);
+  $theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+  @include angular-material-theme($theme);
+  @include ant-grid-theme($theme);
+}
