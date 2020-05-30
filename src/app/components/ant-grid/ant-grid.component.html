@@ -1,10 +1,10 @@
-<div fxLayout="column" fxLayoutGap="1px" class="mat-elevation-z2 ant-grid">
-  <div *ngFor="let row of grid; let i = index" fxLayout="row" fxLayoutGap="1px">
-    <div *ngFor="let cell of row; let j = index" [className]="'ant-grid__cell ant-grid__cell--' + cell">
-      <div *ngIf="getAnt(i, j) as ant" class="ant-grid__ant" [style.backgroundColor]="ant.color">
-      </div>
-      <div *ngIf="getFood(i, j)" class="ant-grid__food">
-      </div>
-    </div>
-  </div>
+<div class="mat-headline ant-grid__ticks">
+  <ng-container *ngIf="elapsedTicks < 1000 else finishedTemplate">
+    Ticks: {{ elapsedTicks | number }}
+  </ng-container>
 </div>
+<canvas #canvas class="ant-grid__canvas mat-elevation-z2" [width]="canvasWidth" [height]="canvasHeight">
+</canvas>
+<ng-template #finishedTemplate>
+  Game Over
+</ng-template>

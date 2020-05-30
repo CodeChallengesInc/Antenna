@@ -1,7 +1,7 @@
 @mixin ant-grid-theme($theme) {
   $background: map-get($theme, background);
 
-  .ant-grid {
+  .ant-grid__canvas {
     background: map-get($background, card);
   }
 }

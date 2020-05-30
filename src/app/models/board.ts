@@ -15,4 +15,5 @@ export interface BoardResponse {
   grid: number[][];
   ants: Ant[];
   food: Food[];
+  elapsedTicks: number;
 }
