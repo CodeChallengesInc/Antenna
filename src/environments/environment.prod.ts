@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendApi: 'http://174.138.57.106:82:81',
-  submissionApi: '',
+  backendApi: 'http://174.138.57.106:81',
+  submissionApi: 'http://174.138.57.106:81',
 };
