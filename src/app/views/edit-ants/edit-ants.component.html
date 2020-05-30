@@ -1,0 +1,42 @@
+<div fxFlexFill fxLayout="column" *ngIf="ants$ | async as ants">
+  <mat-toolbar color="primary" class="edit-ants__toolbar mat-elevation-z4">
+    <button mat-icon-button routerLink="/home">
+      <mat-icon>home</mat-icon>
+    </button>
+    <div fxFlex></div>
+    <span>Ant Collection</span>
+    <div fxFlex></div>
+    <button mat-icon-button (click)="showRules()" matTooltip="Show the rules">
+      <mat-icon>assignment</mat-icon>
+    </button>
+  </mat-toolbar>
+
+
+  <mat-sidenav-container fxFlex>
+    <mat-sidenav mode="side" opened>
+      <div fxFill fxLayout="column">
+        <mat-toolbar class="edit-ants__side-nav-toolbar">
+          <span fxFlex>Ants</span>
+          <button mat-icon-button (click)="createAnt()" matTooltip="Add new ant">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-toolbar>
+
+        <mat-nav-list class="edit-ants__nav-list" fxFlex>
+          <mat-list-item *ngFor="let ant of ants" [routerLink]="ant.username" routerLinkActive="edit-ants__active-link">
+            <mat-icon mat-list-icon>bug_report</mat-icon>
+            <span matLine>{{ ant.username }}</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div *ngIf="!route?.firstChild" fxFlexFill fxLayoutAlign="center center" class="mat-display-1 edit-ants__select-ant-watermark">
+        Please select an ant
+      </div>
+      <router-outlet #outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>

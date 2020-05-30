@@ -4,6 +4,9 @@ html, body { height: 100%; }
 body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; }
 
 @import './app/components/ant-grid/ant-grid.theme';
+@import './app/views/edit-ants/edit-ants.theme';
+@import './app/components/edit-ant/edit-ant.theme';
+@import './app/views/home/home.theme';
 
 $custom-typography: mat-typography-config(
   $font-family: "Quicksand"
@@ -11,13 +14,20 @@ $custom-typography: mat-typography-config(
 
 @include mat-core($custom-typography);
 
+@mixin custom-components-theme($theme) {
+  @include ant-grid-theme($theme);
+  @include edit-ants-theme($theme);
+  @include edit-ant-theme($theme);
+  @include home-theme($theme);
+}
+
 .dark  {
   $dark-primary: mat-palette($mat-purple);
   $dark-accent: mat-palette($mat-green);
   $dark-warn: mat-palette($mat-red);
   $theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($theme);
-  @include ant-grid-theme($theme);
+  @include custom-components-theme($theme);
 }
 
 .light {
@@ -26,5 +36,14 @@ $custom-typography: mat-typography-config(
   $light-warn: mat-palette($mat-red);
   $theme: mat-light-theme($light-primary, $light-accent, $light-warn);
   @include angular-material-theme($theme);
-  @include ant-grid-theme($theme);
+  @include custom-components-theme($theme);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a5a5a5;
 }

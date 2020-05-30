@@ -1,0 +1,20 @@
+<form #form #addAntForm="ngForm">
+  <h2 mat-dialog-title>Create Ant</h2>
+
+  <mat-dialog-content>
+    <mat-form-field class="create-ant-dialog__ant-name">
+      <input #antNameInput matInput name="antName" maxlength="40" appRestrictedValues placeholder="Ant Name" required [(ngModel)]="antName" autocomplete="off">
+      <mat-error *ngIf="addAntForm.controls.antName?.errors?.restrictedValue">
+        An ant with this name already exists
+      </mat-error>
+      <mat-error *ngIf="addAntForm.controls.antName?.errors?.required">
+        An ant name is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" (click)="createAnt()" [disabled]="addAntForm.invalid">Create</button>
+  </mat-dialog-actions>
+</form>

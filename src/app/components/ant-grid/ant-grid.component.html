@@ -1,14 +1,9 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <div class="mat-subheading-2">
-    Current Game
-  </div>
-  <div fxLayout="column" fxLayoutGap="1px" class="mat-elevation-z1">
-    <div *ngFor="let row of grid; let i = index" fxLayout="row" fxLayoutGap="1px">
-      <div *ngFor="let cell of row; let j = index" [className]="'ant-grid__cell ant-grid__cell--' + cell">
-        <div *ngIf="getAnt(i, j) as ant" class="ant-grid__ant" [style.backgroundColor]="ant.color">
-        </div>
-        <div *ngIf="getFood(i, j)" class="ant-grid__food">
-        </div>
+<div fxLayout="column" fxLayoutGap="1px" class="mat-elevation-z2 ant-grid">
+  <div *ngFor="let row of grid; let i = index" fxLayout="row" fxLayoutGap="1px">
+    <div *ngFor="let cell of row; let j = index" [className]="'ant-grid__cell ant-grid__cell--' + cell">
+      <div *ngIf="getAnt(i, j) as ant" class="ant-grid__ant" [style.backgroundColor]="ant.color">
+      </div>
+      <div *ngIf="getFood(i, j)" class="ant-grid__food">
       </div>
     </div>
   </div>

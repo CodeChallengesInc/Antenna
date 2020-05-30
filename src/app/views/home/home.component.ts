@@ -3,6 +3,7 @@ import { GameService } from '../../services/game.service';
 import { Observable } from 'rxjs';
 import { BoardResponse } from 'src/app/models/board';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'cci-home',
