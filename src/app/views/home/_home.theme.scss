@@ -1,0 +1,11 @@
+@mixin home-theme($theme) {
+  $background: map-get($map: $theme, $key: background);
+
+  .home__tile {
+    background: map-get($map: $background, $key: card);
+  }
+
+  .home__tile:hover {
+    background: map-get($map: $background, $key: hover);
+  }
+}

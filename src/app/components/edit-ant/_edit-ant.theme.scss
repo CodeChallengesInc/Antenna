@@ -1,0 +1,7 @@
+@mixin edit-ant-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  .edit-ant__toolbar {
+    border-bottom: 1px solid map-get($foreground, divider);
+  }
+}

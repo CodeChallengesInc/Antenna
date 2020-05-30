@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { GameComponent } from './components/game/game.component';
+import { EditAntsComponent } from './views/edit-ants/edit-ants.component';
+import { EditAntComponent } from './components/edit-ant/edit-ant.component';
+import { HomeComponent } from './views/home/home.component';
+import { GameComponent } from './views/game/game.component';
 
 
 const routes: Routes = [
@@ -12,6 +14,16 @@ const routes: Routes = [
   {
     path: 'game/:gameId',
     component: GameComponent,
+  },
+  {
+    path: 'edit-ants',
+    component: EditAntsComponent,
+    children: [
+      {
+        path: ':antName',
+        component: EditAntComponent,
+      },
+    ],
   },
   {
     path: '',

@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { BoardResponse } from 'src/app/models/board';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { GameService } from '../../services/game.service';
+import { BoardResponse } from 'src/app/models/board';
+import { GameService } from 'src/app/services/game.service';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'cci-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
+export class GameComponent {
 
   readonly board$: Observable<BoardResponse>;
 
@@ -19,8 +19,4 @@ export class GameComponent implements OnInit {
       return this.gameService.getBoard(params.gameId);
     }));
   }
-
-  ngOnInit(): void {
-  }
-
 }
