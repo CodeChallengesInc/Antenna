@@ -16,7 +16,7 @@ export class GameComponent {
 
   constructor(private gameService: GameService, private route: ActivatedRoute) {
     this.board$ = route.params.pipe(switchMap(params => {
-      return this.gameService.getBoard(params.gameId);
+      return this.gameService.getBoard$(params.gameId);
     }));
   }
 }

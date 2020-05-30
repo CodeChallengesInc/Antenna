@@ -20,7 +20,7 @@ export class HomeComponent {
     ) { }
 
   createGame(): void {
-    this.gameService.createGame().subscribe(gameId => {
+    this.gameService.createGame$().subscribe(gameId => {
       this.router.navigate([`game/${gameId}`]);
     });
   }
