@@ -4,8 +4,6 @@
 
 export const environment = {
   production: false,
-  backendApi: 'http://localhost:81',
-  submissionApi: 'http://localhost:82'
 };
 
 /*

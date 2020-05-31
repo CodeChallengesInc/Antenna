@@ -1,0 +1,4 @@
+{
+  "backendApi": "${BACKEND_API}",
+  "submissionApi": "${SUBMISSION_API}"
+}
