@@ -1,0 +1,13 @@
+<button mat-icon-button [matMenuTriggerFor]="themeMenu">
+  <mat-icon>format_color_fill</mat-icon>
+</button>
+
+<mat-menu #themeMenu="matMenu">
+  <button mat-menu-item *ngFor="let theme of themes$ | async" (click)="changeTheme(theme.path)">
+    <mat-radio-button [checked]="isCurrentTheme(theme.path)"></mat-radio-button>
+    <div fxLayout="row" fxFlex fxLayoutAlign="start center">
+      <span fxFlex>{{ theme.title }}</span>
+      <mat-icon [style.marginRight]="0" class="theme-selector__icon mat-elevation-z1" [svgIcon]="theme.svgIcon"></mat-icon>
+    </div>
+  </button>
+</mat-menu>

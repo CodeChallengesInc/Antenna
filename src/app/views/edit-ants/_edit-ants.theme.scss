@@ -1,15 +1,19 @@
 @mixin edit-ants-theme($theme) {
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
 
   .edit-ants__active-link {
     background: map-get($background, hover) !important;
-    border-left: 4px solid map-get($primary, default);
+    border-left: 4px solid map-get($accent, default);
     box-sizing: border-box;
   }
 
   .edit-ants__side-nav-toolbar {
     border-bottom: 1px solid map-get($foreground, divider);
+  }
+
+  .edit-ants__select-ant-watermark {
+    color: map-get($map: $foreground, $key: disabled);
   }
 }

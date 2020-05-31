@@ -3,15 +3,16 @@
 <div fxFlexFill fxLayout="column">
   <mat-toolbar color="primary" class="edit-ants__toolbar mat-elevation-z4">
     <button mat-icon-button routerLink="/home">
-      <mat-icon>home</mat-icon>
+      <mat-icon>arrow_back</mat-icon>
     </button>
     <div fxFlex></div>
     <span>Ants Coding Challenge</span>
     <div fxFlex></div>
+    <cci-theme-selector></cci-theme-selector>
   </mat-toolbar>
 
 
-  <div class="game" fxFlex *ngIf="board$ | async as board else loadingTemplate" fxLayout="column" fxLayoutGap="32px" fxLayoutAlign="center center">
+  <div class="game" fxFlex *ngIf="board$ | async as board else loadingTemplate" fxLayout="column" fxLayoutGap="32px" fxLayoutAlign="start center">
     <cci-ant-grid
       [ants]="board.ants"
       [food]="board.food"

@@ -1,7 +1,7 @@
 @import "~@angular/material/theming";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; overflow: hidden; }
 
 @import './app/components/ant-grid/ant-grid.theme';
 @import './app/views/edit-ants/edit-ants.theme';
@@ -21,22 +21,40 @@ $custom-typography: mat-typography-config(
   @include home-theme($theme);
 }
 
-.dark  {
-  $dark-primary: mat-palette($mat-purple);
-  $dark-accent: mat-palette($mat-green);
-  $dark-warn: mat-palette($mat-red);
-  $theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include angular-material-theme($theme);
-  @include custom-components-theme($theme);
-}
-
-.light {
+.light-deeppurple-amber {
   $light-primary: mat-palette($mat-deep-purple);
   $light-accent: mat-palette($mat-amber);
   $light-warn: mat-palette($mat-red);
-  $theme: mat-light-theme($light-primary, $light-accent, $light-warn);
-  @include angular-material-theme($theme);
-  @include custom-components-theme($theme);
+  $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+  @include angular-material-theme($light-theme);
+  @include custom-components-theme($light-theme);
+}
+
+.light-indigo-pink {
+  $light-primary: mat-palette($mat-indigo);
+  $light-accent: mat-palette($mat-pink);
+  $light-warn: mat-palette($mat-red);
+  $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+  @include angular-material-theme($light-theme);
+  @include custom-components-theme($light-theme);
+}
+
+.dark-purple-green {
+  $dark-primary: mat-palette($mat-purple);
+  $dark-accent: mat-palette($mat-green);
+  $dark-warn: mat-palette($mat-red);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include angular-material-theme($dark-theme);
+  @include custom-components-theme($dark-theme);
+}
+
+.dark-pink-bluegrey {
+  $dark-primary: mat-palette($mat-pink);
+  $dark-accent: mat-palette($mat-blue-grey);
+  $dark-warn: mat-palette($mat-red);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include angular-material-theme($dark-theme);
+  @include custom-components-theme($dark-theme);
 }
 
 ::-webkit-scrollbar {

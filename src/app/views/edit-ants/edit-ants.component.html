@@ -1,14 +1,15 @@
 <div fxFlexFill fxLayout="column" *ngIf="ants$ | async as ants">
   <mat-toolbar color="primary" class="edit-ants__toolbar mat-elevation-z4">
     <button mat-icon-button routerLink="/home">
-      <mat-icon>home</mat-icon>
+      <mat-icon>arrow_back</mat-icon>
     </button>
     <div fxFlex></div>
     <span>Ant Collection</span>
-    <div fxFlex></div>
     <button mat-icon-button (click)="showRules()" matTooltip="Show the rules">
       <mat-icon>assignment</mat-icon>
     </button>
+    <div fxFlex></div>
+    <cci-theme-selector></cci-theme-selector>
   </mat-toolbar>
 
 

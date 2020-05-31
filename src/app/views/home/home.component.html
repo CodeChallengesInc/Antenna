@@ -3,6 +3,7 @@
     <div fxFlex></div>
     <span>Ants Coding Challenge</span>
     <div fxFlex></div>
+    <cci-theme-selector></cci-theme-selector>
   </mat-toolbar>
 
   <div fxFlex fxLayout="column" fxLayoutAlign="start center">
@@ -10,13 +11,21 @@
       Welcome!
     </div>
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="64px">
-      <div class="home__tile mat-elevation-z2" matRipple fxLayoutAlign="center center"  fxLayout="column" fxLayoutGap="16px" (click)="createGame()">
-        <mat-icon appIconSize="64px">show_chart</mat-icon>
-        New Game
+      <div class="home__tile mat-elevation-z2" matRipple fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px" (click)="createGame()">
+        <div fxFlex fxLayoutAlign="center center">
+          <mat-icon appIconSize="64px">show_chart</mat-icon>
+        </div>
+        <div class="mat-subheading-2">
+          New Game
+        </div>
       </div>
-      <div class="home__tile mat-elevation-z2" matRipple routerLink="/edit-ants" fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="16px">
-        <mat-icon appIconSize="64px">bug_report</mat-icon>
-        <div>Ant Collection</div>
+      <div class="home__tile mat-elevation-z2" matRipple routerLink="/edit-ants" fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px">
+        <div fxFlex fxLayoutAlign="center center">
+          <mat-icon appIconSize="64px">bug_report</mat-icon>
+        </div>
+        <div class="mat-subheading-2">
+          Ant Collection
+        </div>
       </div>
     </div>
   </div>

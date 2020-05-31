@@ -40,6 +40,9 @@ import {MatRippleModule} from '@angular/material/core';
 import { IconSizeDirective } from './directives/icon-size.directive';
 import { GameComponent } from './views/game/game.component';
 import { RestrictedValuesDirective } from './directives/restricted-values.directive';
+import { ThemeSelectorComponent } from './components/theme-selector/theme-selector.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { RestrictedValuesDirective } from './directives/restricted-values.direct
     ConfirmDeleteDialogComponent,
     IconSizeDirective,
     RestrictedValuesDirective,
+    ThemeSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +68,7 @@ import { RestrictedValuesDirective } from './directives/restricted-values.direct
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatRadioModule,
     MatCardModule,
     MatInputModule,
     FormsModule,
@@ -74,6 +79,7 @@ import { RestrictedValuesDirective } from './directives/restricted-values.direct
     MatDialogModule,
     MatTooltipModule,
     MatSidenavModule,
+    MatMenuModule,
     MatRippleModule,
     MatListModule,
     MatProgressSpinnerModule,
