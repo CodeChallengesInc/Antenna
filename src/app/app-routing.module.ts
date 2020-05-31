@@ -10,14 +10,23 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    data: {
+      animationLevel: 0,
+    },
   },
   {
     path: 'game/:gameId',
     component: GameComponent,
+    data: {
+      animationLevel: 1,
+    },
   },
   {
     path: 'edit-ants',
     component: EditAntsComponent,
+    data: {
+      animationLevel: 1,
+    },
     children: [
       {
         path: ':antName',

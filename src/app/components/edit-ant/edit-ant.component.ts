@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'cci-edit-ant',
@@ -20,7 +21,7 @@ export class EditAntComponent implements OnInit {
 
   @ViewChild(CodeEditorComponent) editor?: CodeEditorComponent;
 
-  theme = document.body.classList.contains('dark') ? 'vs-dark' : 'vs';
+  theme = 'vs';
 
   codeModel: CodeModel = {
     language: 'javascript',
@@ -40,6 +41,7 @@ export class EditAntComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
+    private themeService: ThemeService,
     private snackBar: MatSnackBar,
     ) {
     this.antName$ = route.params.pipe(map(p => p.antName));
@@ -56,6 +58,16 @@ export class EditAntComponent implements OnInit {
 
       }
     });
+    this.refreshTheme();
+    this.themeService.themeChanged.subscribe(() => this.refreshTheme());
+  }
+
+  private refreshTheme(): void {
+    if (this.themeService.currentThemeClass.indexOf('dark') >= 0) {
+      this.theme = 'vs-dark';
+    } else {
+      this.theme = 'vs';
+    }
   }
 
   ngOnInit(): void {

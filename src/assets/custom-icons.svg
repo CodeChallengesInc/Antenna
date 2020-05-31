@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Add custom icons to this file.  MOST icons should come from @hyland/icons. If that is not possible, use this file for custom icons -->
+<svg>
+  <defs>
+    <svg id="nilread_reset" viewBox="0 0 24 24">
+      <g>
+        <path d="M12 13.2632C12.6976 13.2632 13.2632 12.6976 13.2632 12C13.2632 11.3024 12.6976 10.7369 12 10.7369C11.3024 10.7369 10.7369 11.3024 10.7369 12C10.7369 12.6976 11.3024 13.2632 12 13.2632Z" />
+        <path d="M12 2.5263C12.6976 2.5263 13.2632 1.96077 13.2632 1.26315C13.2632 0.565532 12.6976 0 12 0C11.3024 0 10.7369 0.565532 10.7369 1.26315C10.7369 1.96077 11.3024 2.5263 12 2.5263Z" />
+        <path d="M12 23.9998C12.6976 23.9998 13.2632 23.4343 13.2632 22.7367C13.2632 22.0391 12.6976 21.4735 12 21.4735C11.3024 21.4735 10.7369 22.0391 10.7369 22.7367C10.7369 23.4343 11.3024 23.9998 12 23.9998Z" />
+        <path d="M21.4737 12C21.4737 12.6976 22.0392 13.2632 22.7369 13.2632C23.4345 13.2632 24 12.6976 24 12C24 11.3024 23.4345 10.7369 22.7369 10.7369C22.0392 10.7369 21.4737 11.3024 21.4737 12Z" />
+        <path d="M0 12C0 12.6976 0.565532 13.2632 1.26315 13.2632C1.96077 13.2632 2.5263 12.6976 2.5263 12C2.5263 11.3024 1.96077 10.7369 1.26315 10.7369C0.565532 10.7369 0 11.3024 0 12Z" />
+        <path d="M18.6988 18.6989C18.2055 19.1922 18.2055 19.992 18.6988 20.4853C19.1921 20.9786 19.9918 20.9786 20.4851 20.4853C20.9784 19.992 20.9784 19.1922 20.4851 18.6989C19.9918 18.2056 19.1921 18.2056 18.6988 18.6989Z" />
+        <path d="M3.51487 3.51462C3.02158 4.00791 3.02158 4.8077 3.51487 5.30099C4.00816 5.79428 4.80794 5.79428 5.30123 5.30099C5.79452 4.8077 5.79452 4.00791 5.30123 3.51462C4.80794 3.02133 4.00816 3.02133 3.51487 3.51462Z" />
+        <path d="M5.3012 18.6987C4.80791 18.2054 4.00813 18.2054 3.51484 18.6987C3.02155 19.192 3.02155 19.9918 3.51484 20.4851C4.00813 20.9784 4.80791 20.9784 5.3012 20.4851C5.79449 19.9918 5.79449 19.192 5.3012 18.6987Z" />
+        <path d="M20.4852 3.51476C19.9919 3.02147 19.1921 3.02147 18.6988 3.51476C18.2055 4.00805 18.2055 4.80784 18.6988 5.30113C19.1921 5.79442 19.9919 5.79442 20.4852 5.30113C20.9785 4.80784 20.9785 4.00805 20.4852 3.51476Z" />
+        <path d="M13.2632 15.7894H10.7369V20.2105H13.2632V15.7894Z" />
+        <path d="M13.2632 3.78948H10.7369V8.21051H13.2632V3.78948Z" />
+        <path d="M8.21068 13.2631V10.7368H3.78965V13.2631H8.21068Z" />
+        <path d="M20.2106 13.2631V10.7368H15.7896V13.2631H20.2106Z" />
+        <path d="M8.42697 10.2136L10.2133 8.42726L7.08719 5.30112L5.30083 7.08749L8.42697 10.2136Z" />
+        <path d="M16.9131 18.6989L18.6995 16.9126L15.5734 13.7864L13.787 15.5728L16.9131 18.6989Z" />
+        <path d="M13.787 8.42713L15.5733 10.2135L18.6995 7.08736L16.9131 5.30099L13.787 8.42713Z" />
+        <path d="M5.30079 16.9124L7.08715 18.6988L10.2133 15.5726L8.42693 13.7863L5.30079 16.9124Z" />
+      </g>
+    </svg>
+    <svg id="deep_purple_amber" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 80" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><defs><path d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z" id="a"></path><path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b"></path><path d="M0 0h80v17.24H0V0z" id="c"></path></defs><use xlink:href="#a" fill="#fff" class="docs-theme-icon-background"></use><use xlink:href="#b" fill="#ffc107" class="docs-theme-icon-button"></use><use xlink:href="#c" fill="#673ab7" class="docs-theme-icon-toolbar"></use></svg>
+    <svg id="indigo_pink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 80" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><defs><path d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z" id="a"></path><path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b"></path><path d="M0 0h80v17.24H0V0z" id="c"></path></defs><use xlink:href="#a" fill="#fff" class="docs-theme-icon-background"></use><use xlink:href="#b" fill="#ff4081" class="docs-theme-icon-button"></use><use xlink:href="#c" fill="#3f51b5" class="docs-theme-icon-toolbar"></use></svg>
+    <svg id="pink_blue_grey" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 80" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><defs><path d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z" id="a"></path><path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b"></path><path d="M0 0h80v17.24H0V0z" id="c"></path></defs><use xlink:href="#a" fill="#303030" class="docs-theme-icon-background"></use><use xlink:href="#b" fill="#607d8b" class="docs-theme-icon-button"></use><use xlink:href="#c" fill="#e91e63" class="docs-theme-icon-toolbar"></use></svg>
+    <svg id="purple_green" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 80" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><defs><path d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z" id="a"></path><path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b"></path><path d="M0 0h80v17.24H0V0z" id="c"></path></defs><use xlink:href="#a" fill="#303030" class="docs-theme-icon-background"></use><use xlink:href="#b" fill="#4caf50" class="docs-theme-icon-button"></use><use xlink:href="#c" fill="#9c27b0" class="docs-theme-icon-toolbar"></use></svg>
+  </defs>
+</svg>
+
+
+<path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b"></path>
