@@ -12,4 +12,8 @@
   .edit-ants__side-nav-toolbar {
     border-bottom: 1px solid map-get($foreground, divider);
   }
+
+  .edit-ants__select-ant-watermark {
+    color: map-get($map: $foreground, $key: disabled);
+  }
 }
