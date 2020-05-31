@@ -31,7 +31,6 @@ export class TestAntDialogComponent {
 
     // Remove this game when closed / no longer needed
     dialogRef.afterClosed().subscribe(() => {
-      console.log('wanting to delete' , this.gameId);
       if (this.gameId) {
         gameService.deleteGame$(this.gameId).subscribe();
       }

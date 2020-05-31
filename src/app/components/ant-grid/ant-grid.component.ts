@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Ant, Food } from 'src/app/models/board';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'cci-ant-grid',
@@ -21,7 +22,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   canvasHeight = 0;
   cellSize = 6;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private theme: ThemeService) { }
 
   ngAfterViewInit(): void {
     this.context = this.canvas.nativeElement.getContext('2d');
@@ -89,15 +90,12 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
       this.context.globalAlpha = 1;
 
-      this.context.strokeStyle = '#a5a5a5';
-      this.context.rect(this.cellSize, this.cellSize, this.canvasWidth - this.cellSize * 2, this.canvasHeight - this.cellSize * 2);
-      this.context.stroke();
-
       for (const ant of this.food) {
         const centerX = ant.column * this.cellSize + (this.cellSize / 2);
         const centerY = ant.row * this.cellSize + (this.cellSize / 2);
         const radius = this.cellSize / 2 - 1;
-        this.drawCircle(centerX, centerY, radius, 'brown', 'black', 1);
+        const stroke = this.theme.isDarkTheme() ? 'black' : 'darkgray';
+        this.drawCircle(centerX, centerY, radius, 'brown', stroke, 0);
       }
 
       for (let i = 0; i < this.ants.length; i++) {
@@ -143,7 +141,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     if (ant.antName === this.leader?.antName) {
       return 'gold';
     }
-    return 'white';
+    return this.theme.isDarkTheme() ? 'white' : 'black';
   }
 
   private drawCircle(centerX: number, centerY: number, radius: number, fillColor: string, strokeColor: string, lineWidth: number): void {

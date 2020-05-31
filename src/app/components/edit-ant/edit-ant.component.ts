@@ -66,7 +66,7 @@ export class EditAntComponent implements OnInit {
   }
 
   private refreshTheme(): void {
-    if (this.themeService.currentThemeClass.indexOf('dark') >= 0) {
+    if (this.themeService.isDarkTheme()) {
       this.theme = 'vs-dark';
     } else {
       this.theme = 'vs';
