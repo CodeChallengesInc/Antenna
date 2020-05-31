@@ -45,8 +45,8 @@ export class GameService {
     return this.httpClient.post(url, {}, { responseType: 'text' });
   }
 
-  createTestGame$(code: string): Observable<string> {
+  createTestGame$(antName: string, code: string): Observable<string> {
     const url = `${environment.backendApi}/test`;
-    return this.httpClient.post(url, { code }, { responseType: 'text' });
+    return this.httpClient.post(url, { antName, code }, { responseType: 'text' });
   }
 }

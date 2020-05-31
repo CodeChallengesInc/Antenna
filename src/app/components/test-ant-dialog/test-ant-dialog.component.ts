@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { BoardResponse } from 'src/app/models/board';
 
 export interface TestAntDialogData {
+  antName: string;
   code: string;
 }
 
@@ -23,7 +24,7 @@ export class TestAntDialogComponent {
     @Inject(MAT_DIALOG_DATA) data: TestAntDialogData,
     dialogRef: MatDialogRef<TestAntDialogComponent>,
     gameService: GameService) {
-    this.board$ = gameService.createTestGame$(data.code).pipe(switchMap(gameId => {
+    this.board$ = gameService.createTestGame$(data.antName, data.code).pipe(switchMap(gameId => {
       gameId = gameId;
       return gameService.getBoard$(gameId);
     }));

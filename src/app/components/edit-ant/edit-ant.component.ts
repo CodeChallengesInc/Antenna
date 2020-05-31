@@ -90,6 +90,7 @@ export class EditAntComponent implements OnInit {
   testAnt(): void {
     this.dialog.open(TestAntDialogComponent, {
       data: {
+        antName: this.route.snapshot.params.antName,
         code: this.codeModel.value,
       },
       minWidth: '300px',
