@@ -1,0 +1,18 @@
+<mat-dialog-content>
+  <div *ngIf="board$ | async as board else loadingTemplate" fxLayout="column" fxLayoutGap="32px" fxLayoutAlign="start center">
+    <cci-ant-grid
+      [ants]="board.ants"
+      [food]="board.food"
+      [elapsedTicks]="board.elapsedTicks"
+      [grid]="board.grid">
+    </cci-ant-grid>
+    <cci-leaderboard [ants]="board.ants"></cci-leaderboard>
+  </div>
+</mat-dialog-content>
+
+<ng-template #loadingTemplate>
+  <div class="game" fxLayoutAlign="center center" [style.height]="'300px'"
+  [style.width]="'300px'">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

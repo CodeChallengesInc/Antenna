@@ -12,7 +12,7 @@ export class LeaderboardComponent implements OnInit, OnChanges {
 
   @Input() ants: Ant[] = [];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  displayedColumns: string[] = ['name', 'score'];
+  displayedColumns: string[] = ['name', 'score', 'errors'];
   dataSource: MatTableDataSource<Ant>;
 
   constructor() { }
