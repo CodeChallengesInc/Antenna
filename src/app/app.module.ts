@@ -43,6 +43,7 @@ import { RestrictedValuesDirective } from './directives/restricted-values.direct
 import { ThemeSelectorComponent } from './components/theme-selector/theme-selector.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
+import { TestAntDialogComponent } from './components/test-ant-dialog/test-ant-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MatRadioModule } from '@angular/material/radio';
     IconSizeDirective,
     RestrictedValuesDirective,
     ThemeSelectorComponent,
+    TestAntDialogComponent,
   ],
   imports: [
     BrowserModule,

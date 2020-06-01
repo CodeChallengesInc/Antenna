@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Ant, Food } from 'src/app/models/board';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'cci-ant-grid',
@@ -10,6 +11,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   public context: CanvasRenderingContext2D;
+  private leader?: Ant;
 
   @Input() grid: number[][] = [];
   @Input() ants: Ant[] = [];
@@ -20,18 +22,34 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   canvasHeight = 0;
   cellSize = 6;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private theme: ThemeService) { }
 
   ngAfterViewInit(): void {
     this.context = this.canvas.nativeElement.getContext('2d');
-    this.canvasHeight = this.grid.length * this.cellSize;
-    this.canvasWidth = this.grid[0].length * this.cellSize;
+    this.canvasHeight = this.grid.length * this.cellSize + this.cellSize * 2;
+    this.canvasWidth = this.grid[0].length * this.cellSize + this.cellSize * 2;
     this.cdr.detectChanges();
-    this.draw();
+    window.requestAnimationFrame(() => this.draw());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.draw();
+    if (changes.ants) {
+      if (this.ants && this.ants.length > 1) {
+        const leader = this.ants.sort((a, b) => {
+          if (a.score > b.score) {
+            return 1;
+          } else if (a.score < b.score) {
+            return -1;
+          } else {
+            return 0;
+          }
+        })[this.ants.length - 1];
+        if (leader && leader.score) {
+          this.leader = leader;
+        }
+      }
+      window.requestAnimationFrame(() => this.draw(changes.ants.previousValue));
+    }
   }
 
   private getColor(value: number): string {
@@ -55,8 +73,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  draw(): void {
-    requestAnimationFrame(() => this.draw);
+  draw(previousAnts?: Ant[], step?: number): void {
     if (this.context) {
       this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       this.context.globalAlpha = 0.5;
@@ -66,7 +83,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
           const value = this.grid[i][j];
           if (value > 1) {
             this.context.fillStyle = this.getColor(value);
-            this.context.fillRect(j * this.cellSize, i * this.cellSize, this.cellSize, this.cellSize);
+            this.context.fillRect(j * this.cellSize + this.cellSize, i * this.cellSize + this.cellSize, this.cellSize, this.cellSize);
           }
         }
       }
@@ -77,21 +94,59 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
         const centerX = ant.column * this.cellSize + (this.cellSize / 2);
         const centerY = ant.row * this.cellSize + (this.cellSize / 2);
         const radius = this.cellSize / 2 - 1;
-        this.drawCircle(centerX, centerY, radius, 'brown', 'black', 1);
+        const stroke = this.theme.isDarkTheme() ? 'black' : 'darkgray';
+        this.drawCircle(centerX, centerY, radius, 'brown', stroke, 0);
       }
 
-      for (const ant of this.ants) {
-        const centerX = ant.column * this.cellSize + (this.cellSize / 2);
-        const centerY = ant.row * this.cellSize + (this.cellSize / 2);
-        const radius = this.cellSize / 2 + 2;
-        this.drawCircle(centerX, centerY, radius, ant.color, 'white', 2);
+      for (let i = 0; i < this.ants.length; i++) {
+        if (previousAnts) {
+          if (!step) {
+            step = 0;
+          }
+          const previousAnt = previousAnts[i];
+          const centerX = this.ants[i].column * this.cellSize + (this.cellSize / 2);
+          const centerY = this.ants[i].row * this.cellSize + (this.cellSize / 2);
+          const prevCenterX = previousAnt.column * this.cellSize + (this.cellSize / 2);
+          const prevCenterY = previousAnt.row * this.cellSize + (this.cellSize / 2);
+          const dx = prevCenterX + (centerX - prevCenterX) * step;
+          const dy = prevCenterY + (centerY - prevCenterY) * step;
+          const radius = this.cellSize / 2 + 2;
+          if (Math.abs(centerX - prevCenterX) > this.cellSize ||
+              Math.abs(centerY - prevCenterY) > this.cellSize) {
+            this.drawCircle(centerX, centerY, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
+          } else {
+            this.drawCircle(dx, dy, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
+          }
+        } else {
+          const centerX = this.ants[i].column * this.cellSize + (this.cellSize / 2);
+          const centerY = this.ants[i].row * this.cellSize + (this.cellSize / 2);
+          const radius = this.cellSize / 2 + 2;
+          const color = this.ants[i].error ? 'red' :
+          this.drawCircle(centerX, centerY, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
+        }
+      }
+
+      step += 0.1;
+      if (step <= 1) {
+        window.requestAnimationFrame(() => this.draw(previousAnts, step));
       }
     }
   }
 
+  private getAntStrokeColor(ant: Ant) {
+    if (ant.error) {
+      return 'red';
+    }
+
+    if (ant.antName === this.leader?.antName) {
+      return 'gold';
+    }
+    return this.theme.isDarkTheme() ? 'white' : 'black';
+  }
+
   private drawCircle(centerX: number, centerY: number, radius: number, fillColor: string, strokeColor: string, lineWidth: number): void {
     this.context.beginPath();
-    this.context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    this.context.arc(centerX + this.cellSize, centerY + this.cellSize, radius, 0, 2 * Math.PI, false);
     this.context.fillStyle = fillColor;
     this.context.fill();
     this.context.lineWidth = lineWidth;

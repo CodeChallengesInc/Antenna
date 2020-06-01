@@ -8,6 +8,8 @@ import { map, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
 import { ThemeService } from '../../services/theme.service';
+import { TestAntDialogComponent } from '../test-ant-dialog/test-ant-dialog.component';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'cci-edit-ant',
@@ -40,6 +42,7 @@ export class EditAntComponent implements OnInit {
     private submissionService: SubmissionService,
     private route: ActivatedRoute,
     private router: Router,
+    private gameService: GameService,
     private dialog: MatDialog,
     private themeService: ThemeService,
     private snackBar: MatSnackBar,
@@ -63,7 +66,7 @@ export class EditAntComponent implements OnInit {
   }
 
   private refreshTheme(): void {
-    if (this.themeService.currentThemeClass.indexOf('dark') >= 0) {
+    if (this.themeService.isDarkTheme()) {
       this.theme = 'vs-dark';
     } else {
       this.theme = 'vs';
@@ -81,6 +84,17 @@ export class EditAntComponent implements OnInit {
     this.submissionService.submitAnt$(this.route.snapshot.params.antName, this.codeModel.value).subscribe(result => {
       this.snackBar.open('Ant Saved Successfully', undefined, { duration: 2000 });
       this.dirty = false;
+    });
+  }
+
+  testAnt(): void {
+    this.dialog.open(TestAntDialogComponent, {
+      data: {
+        antName: this.route.snapshot.params.antName,
+        code: this.codeModel.value,
+      },
+      minWidth: '300px',
+      minHeight: '300px',
     });
   }
 

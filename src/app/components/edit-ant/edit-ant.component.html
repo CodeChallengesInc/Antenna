@@ -2,6 +2,9 @@
   <mat-toolbar class="edit-ant__toolbar">
     <div fxFlex></div>
     <span>{{ antName$ | async }}</span>
+    <button mat-icon-button (click)="testAnt()" matTooltip="Test this ant">
+      <mat-icon>play_circle_outline</mat-icon>
+    </button>
     <div fxFlex></div>
     <button mat-icon-button (click)="submit()" [disabled]="!dirty" matTooltip="Save this ant">
       <mat-icon>save</mat-icon>

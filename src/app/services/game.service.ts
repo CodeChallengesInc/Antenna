@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, interval, of, timer, Subject } from 'rxjs';
+import { Observable, interval, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BoardResponse } from '../models/board';
-import { switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ConfigResponse } from '../models/config';
 
@@ -35,8 +35,18 @@ export class GameService {
       }));
   }
 
+  deleteGame$(gameId: string): Observable<any> {
+    const url = `${environment.backendApi}/game/${gameId}`;
+    return this.httpClient.delete(url);
+  }
+
   createGame$(): Observable<string> {
     const url = `${environment.backendApi}/game`;
     return this.httpClient.post(url, {}, { responseType: 'text' });
+  }
+
+  createTestGame$(antName: string, code: string): Observable<string> {
+    const url = `${environment.backendApi}/test`;
+    return this.httpClient.post(url, { antName, code }, { responseType: 'text' });
   }
 }

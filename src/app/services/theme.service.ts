@@ -52,6 +52,9 @@ export class ThemeService {
     ]);
   }
 
+  isDarkTheme(): boolean {
+    return this.currentThemeClass.indexOf('dark') >= 0;
+  }
 
   /**
    * Set the theme of the application
