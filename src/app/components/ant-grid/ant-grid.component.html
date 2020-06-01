@@ -1,6 +1,6 @@
 <div class="mat-headline ant-grid__ticks">
-  <ng-container *ngIf="elapsedTicks < 1000 else finishedTemplate">
-    Ticks: {{ elapsedTicks | number }}
+  <ng-container *ngIf="elapsedTicks < config.maxTicks else finishedTemplate">
+    Ticks: {{ elapsedTicks | number }} / {{ config.maxTicks | number }}
   </ng-container>
 </div>
 <canvas #canvas class="ant-grid__canvas mat-elevation-z2" [width]="canvasWidth" [height]="canvasHeight">

@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Ant, Food } from 'src/app/models/board';
 import { ThemeService } from '../../services/theme.service';
+import { ConfigResponse } from '../../models/config';
 
 @Component({
   selector: 'cci-ant-grid',
@@ -16,6 +17,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   @Input() ants: Ant[] = [];
   @Input() food: Food[] = [];
   @Input() elapsedTicks = 0;
+  @Input() config: ConfigResponse;
 
   canvasWidth = 0;
   canvasHeight = 0;

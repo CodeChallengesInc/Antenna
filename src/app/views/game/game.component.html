@@ -17,7 +17,8 @@
       [ants]="board.ants"
       [food]="board.food"
       [elapsedTicks]="board.elapsedTicks"
-      [grid]="board.grid">
+      [grid]="board.grid"
+      [config]="config$ | async">
     </cci-ant-grid>
     <cci-leaderboard [ants]="board.ants"></cci-leaderboard>
   </div>
