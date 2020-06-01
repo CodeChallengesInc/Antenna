@@ -11,16 +11,23 @@ import { ConfigResponse } from '../models/config';
 })
 export class GameService {
 
-  private readonly maximumTicks = 1000;
-
   constructor(private httpClient: HttpClient) { }
+
+  private maximumTicks: number;
+
+  getConfig$(): Observable<ConfigResponse> {
+    const configUrl = `${environment.backendApi}/config`;
+    return this.httpClient.get<ConfigResponse>(configUrl);
+  }
 
   getBoard$(gameId: string): Observable<BoardResponse> {
     const stopSubject = new Subject();
     const gameUrl = `${environment.backendApi}/board/${gameId}`;
-    const configUrl = `${environment.backendApi}/config`;
-    return this.httpClient.get<ConfigResponse>(configUrl).pipe(
-      switchMap(config => interval(1000 / config.ticksPerSecond)),
+    return this.getConfig$().pipe(
+      switchMap(config => {
+        this.maximumTicks = config.maxTicks; // I'm sorry
+        return interval(1000 / config.ticksPerSecond);
+      }),
       switchMap(() => this.httpClient.get<BoardResponse>(gameUrl)),
       takeUntil(stopSubject),
       tap(value => {
