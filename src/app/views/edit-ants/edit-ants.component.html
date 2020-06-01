@@ -30,6 +30,7 @@
           <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.antName]" routerLinkActive="edit-ants__active-link">
             <mat-icon mat-list-icon>bug_report</mat-icon>
             <span matLine>{{ ant.antName }}</span>
+            <mat-icon *ngIf="isReadonly(ant)" matTooltip="This bug was created by another user">lock</mat-icon>
           </mat-list-item>
         </mat-nav-list>
       </div>

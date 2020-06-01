@@ -1,16 +1,19 @@
-<div fxFlexFill fxLayout="column" fxLayoutGap="64px">
+<div fxFlexFill fxLayout="column">
   <mat-toolbar color="primary" class="edit-ants__toolbar mat-elevation-z4">
     <div fxFlex></div>
     <span>Ants Coding Challenge</span>
     <div fxFlex></div>
     <cci-theme-selector></cci-theme-selector>
+    <button mat-icon-button *ngIf="username" (click)="logout()" matTooltip="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
   </mat-toolbar>
 
-  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
-    <div class="mat-display-3">
-      Welcome!
+  <div fxLayout="column" fxFlex fxLayoutGap="64px" fxLayoutAlign="start center">
+    <div class="mat-display-3 home__welcome">
+      Welcome {{ username }}!
     </div>
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="64px">
+    <div fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="64px">
       <div class="home__tile mat-elevation-z2" matRipple fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px" (click)="createGame()">
         <div fxFlex fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">show_chart</mat-icon>
@@ -28,5 +31,7 @@
         </div>
       </div>
     </div>
+    <mat-divider [vertical]="false" style="width: 80%"></mat-divider>
+    <markdown fxFlex class="home__content" [data]="rules$ | async"></markdown>
   </div>
 </div>

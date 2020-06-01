@@ -56,7 +56,7 @@ export class EditAntComponent implements OnInit {
           uri: '',
           value: ant.submission,
         };
-        this.readonly = this.auth.username.toLowerCase() !== ant.username;
+        this.readonly = this.auth.username.toLowerCase() !== ant.username.toLowerCase();
         setTimeout(() => {
           this.dirty = false;
         }, 100);
