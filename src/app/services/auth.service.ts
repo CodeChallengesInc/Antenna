@@ -12,4 +12,8 @@ export class AuthService {
   login(username: string): void {
     sessionStorage.setItem('cci-username', username);
   }
+
+  logout(): void {
+    sessionStorage.clear();
+  }
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: {
-      animationLevel: 1,
+      animationLevel: 0,
     },
   },
   {

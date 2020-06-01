@@ -36,6 +36,11 @@ export class EditAntsComponent implements OnInit {
     this.dialog.open(RulesDialogComponent);
   }
 
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/home']);
+  }
+
   createAnt(): void {
     const dialogRef = this.dialog.open(CreateAntDialogComponent);
     dialogRef.afterClosed().subscribe(antName => {
