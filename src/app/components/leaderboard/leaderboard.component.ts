@@ -24,17 +24,19 @@ export class LeaderboardComponent implements OnInit, OnChanges {
   constructor(private dialog: MatDialog, private theme: ThemeService) { }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.ants) {
-      const leader = this.ants.sort((a, b) => {
-        if (a.score > b.score) {
-          return 1;
-        } else if (a.score < b.score) {
-          return -1;
-        } else {
-          return 0;
+      if (this.ants.length > 1) {
+        const leader = this.ants.sort((a, b) => {
+          if (a.score > b.score) {
+            return 1;
+          } else if (a.score < b.score) {
+            return -1;
+          } else {
+            return 0;
+          }
+        })[this.ants.length - 1];
+        if (leader && leader.score) {
+          this.highScore = leader.score;
         }
-      })[this.ants.length - 1];
-      if (leader && leader.score) {
-        this.highScore = leader.score;
       }
       this.dataSource = new MatTableDataSource(this.ants);
       this.dataSource.sort = this.sort;

@@ -4,6 +4,7 @@
       [ants]="board.ants"
       [food]="board.food"
       [elapsedTicks]="board.elapsedTicks"
+      [config]="config$ | async"
       [grid]="board.grid">
     </cci-ant-grid>
     <cci-leaderboard [allowViewingCode]="false" [ants]="board.ants"></cci-leaderboard>

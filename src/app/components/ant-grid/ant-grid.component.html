@@ -1,5 +1,5 @@
 <div class="mat-headline ant-grid__ticks">
-  <ng-container *ngIf="elapsedTicks < config.maxTicks else finishedTemplate">
+  <ng-container *ngIf="elapsedTicks < config?.maxTicks else finishedTemplate">
     Ticks: {{ elapsedTicks | number }} / {{ config.maxTicks | number }}
   </ng-container>
 </div>
