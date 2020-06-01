@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { RulesDialogComponent } from 'src/app/components/rules-dialog/rules-dialog.component';
 import { CreateAntDialogComponent } from 'src/app/components/create-ant-dialog/create-ant-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'cci-edit-ants',
@@ -20,6 +22,7 @@ export class EditAntsComponent implements OnInit {
     private submissionService: SubmissionService,
     public route: ActivatedRoute,
     private router: Router,
+    private http: HttpClient,
     private dialog: MatDialog) {
     this.ants$ = submissionService.ants$;
   }
@@ -35,7 +38,9 @@ export class EditAntsComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateAntDialogComponent);
     dialogRef.afterClosed().subscribe(antName => {
       if (antName) {
-        this.submissionService.submitAnt$(antName, `// Write ${antName} here`).subscribe(() => {
+        this.http.get('assets/default-ant.js', { responseType: 'text' }).pipe(switchMap(code => {
+          return this.submissionService.submitAnt$(antName, code);
+        })).subscribe(() => {
           this.router.navigate(['/edit-ants', antName]);
         });
       }
