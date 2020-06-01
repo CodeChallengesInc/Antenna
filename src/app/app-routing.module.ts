@@ -4,12 +4,21 @@ import { EditAntsComponent } from './views/edit-ants/edit-ants.component';
 import { EditAntComponent } from './components/edit-ant/edit-ant.component';
 import { HomeComponent } from './views/home/home.component';
 import { GameComponent } from './views/game/game.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    data: {
+      animationLevel: 0,
+    },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
     data: {
       animationLevel: 0,
     },
@@ -24,12 +33,13 @@ const routes: Routes = [
   {
     path: 'edit-ants',
     component: EditAntsComponent,
+    canActivate: [AuthenticationGuard],
     data: {
       animationLevel: 1,
     },
     children: [
       {
-        path: ':antName',
+        path: ':creatorName/:antName',
         component: EditAntComponent,
       },
     ],

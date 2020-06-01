@@ -11,7 +11,6 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   public context: CanvasRenderingContext2D;
-  private leader?: Ant;
 
   @Input() grid: number[][] = [];
   @Input() ants: Ant[] = [];
@@ -21,6 +20,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   canvasWidth = 0;
   canvasHeight = 0;
   cellSize = 6;
+  highScore = 0;
 
   constructor(private cdr: ChangeDetectorRef, private theme: ThemeService) { }
 
@@ -45,7 +45,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
           }
         })[this.ants.length - 1];
         if (leader && leader.score) {
-          this.leader = leader;
+          this.highScore = leader.score;
         }
       }
       window.requestAnimationFrame(() => this.draw(changes.ants.previousValue));
@@ -126,7 +126,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
         }
       }
 
-      step += 0.1;
+      step += 0.2;
       if (step <= 1) {
         window.requestAnimationFrame(() => this.draw(previousAnts, step));
       }
@@ -138,7 +138,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
       return 'red';
     }
 
-    if (ant.antName === this.leader?.antName) {
+    if (this.highScore && ant.score === this.highScore) {
       return 'gold';
     }
     return this.theme.isDarkTheme() ? 'white' : 'black';

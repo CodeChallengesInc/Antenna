@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
 import { ThemeService } from '../../services/theme.service';
 import { TestAntDialogComponent } from '../test-ant-dialog/test-ant-dialog.component';
-import { GameService } from '../../services/game.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'cci-edit-ant',
@@ -20,6 +20,7 @@ export class EditAntComponent implements OnInit {
 
   readonly antName$: Observable<string>;
   dirty = false;
+  readonly = false;
 
   @ViewChild(CodeEditorComponent) editor?: CodeEditorComponent;
 
@@ -42,19 +43,20 @@ export class EditAntComponent implements OnInit {
     private submissionService: SubmissionService,
     private route: ActivatedRoute,
     private router: Router,
-    private gameService: GameService,
+    private auth: AuthService,
     private dialog: MatDialog,
     private themeService: ThemeService,
     private snackBar: MatSnackBar,
     ) {
     this.antName$ = route.params.pipe(map(p => p.antName));
-    this.route.params.pipe(switchMap(params => this.submissionService.getAnt$(params.antName))).subscribe(ant => {
+    this.route.params.pipe(switchMap(params => this.submissionService.getAnt$(params.antName, params.creatorName))).subscribe(ant => {
       if (ant) {
         this.codeModel = {
           language: 'javascript',
           uri: '',
           value: ant.submission,
         };
+        this.readonly = this.auth.username.toLowerCase() !== ant.username;
         setTimeout(() => {
           this.dirty = false;
         }, 100);

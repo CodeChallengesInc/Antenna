@@ -29,7 +29,7 @@ export class RestrictedValuesDirective implements AsyncValidator {
     if (!isEmptyInputValue(control.value)) {
       return this.submissionService.getAnts$().pipe(map(ants => {
         const label = this.trimToLower(control.value);
-        const names = ants.map(a => a.username);
+        const names = ants.map(a => a.antName);
         const value = names?.find(f => label === this.trimToLower(f));
         if (value) {
           return { restrictedValue: value };

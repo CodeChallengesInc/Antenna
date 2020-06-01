@@ -8,6 +8,7 @@ import { CreateAntDialogComponent } from 'src/app/components/create-ant-dialog/c
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'cci-edit-ants',
@@ -23,6 +24,7 @@ export class EditAntsComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
+    private auth: AuthService,
     private dialog: MatDialog) {
     this.ants$ = submissionService.ants$;
   }
@@ -34,6 +36,11 @@ export class EditAntsComponent implements OnInit {
     this.dialog.open(RulesDialogComponent);
   }
 
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/home']);
+  }
+
   createAnt(): void {
     const dialogRef = this.dialog.open(CreateAntDialogComponent);
     dialogRef.afterClosed().subscribe(antName => {
@@ -41,7 +48,7 @@ export class EditAntsComponent implements OnInit {
         this.http.get('assets/default-ant.js', { responseType: 'text' }).pipe(switchMap(code => {
           return this.submissionService.submitAnt$(antName, code);
         })).subscribe(() => {
-          this.router.navigate(['/edit-ants', antName]);
+          this.router.navigate(['/edit-ants', this.auth.username, antName]);
         });
       }
     });
