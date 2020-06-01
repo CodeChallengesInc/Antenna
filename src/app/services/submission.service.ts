@@ -54,7 +54,7 @@ export class SubmissionService {
   }
 
   deleteAnt$(name: string): Observable<any> {
-    const url = `${environment.submissionApi}/lone-ant/${name}`;
+    const url = `${environment.submissionApi}/lone-ant/${this.auth.username}/${name}`;
     return this.httpClient.delete(url).pipe(tap(() => this.refreshAnts()));
   }
 }
