@@ -31,7 +31,7 @@
     <ng-container matColumnDef="menu" stickyEnd>
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let ant">
-        <button mat-icon-button (click)="viewCode(ant)">
+        <button *ngIf="allowViewingCode" mat-icon-button (click)="viewCode(ant)">
           <mat-icon>code</mat-icon>
         </button>
 

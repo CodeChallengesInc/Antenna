@@ -15,6 +15,7 @@ import { AntErrorDialogComponent } from '../ant-error-dialog/ant-error-dialog.co
 export class LeaderboardComponent implements OnInit, OnChanges {
 
   @Input() ants: Ant[] = [];
+  @Input() allowViewingCode = true;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   displayedColumns: string[] = ['name', 'score', 'menu'];
   dataSource: MatTableDataSource<Ant>;
