@@ -5,6 +5,7 @@ export interface Ant {
   score: number;
   color: string;
   error: string;
+  creator: string;
 }
 
 export interface Food {

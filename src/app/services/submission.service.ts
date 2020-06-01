@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlayerResponse } from '../models/player';
 import { SubmissionsResponse } from '../models/submissions';
 import { tap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class SubmissionService {
     return this.antsSubject.asObservable();
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private auth: AuthService) {
     this.refreshAnts();
   }
 
@@ -25,7 +26,7 @@ export class SubmissionService {
     const url = `${environment.submissionApi}/lone-ant/submissions`;
     this.httpClient.get<SubmissionsResponse[]>(url).subscribe(ants => {
       ants = ants.sort((a, b) => {
-        return a.username.localeCompare(b.username);
+        return a.antName.localeCompare(b.antName);
       });
       this.antsSubject.next(ants);
     });
@@ -41,14 +42,14 @@ export class SubmissionService {
     return this.httpClient.get<SubmissionsResponse[]>(url);
   }
 
-  getAnt$(name: string): Observable<PlayerResponse> {
-    const url = `${environment.submissionApi}/lone-ant/${name}`;
+  getAnt$(name: string, username: string): Observable<PlayerResponse> {
+    const url = `${environment.submissionApi}/lone-ant/${username}/${name}`;
     return this.httpClient.get<PlayerResponse>(url);
   }
 
-  submitAnt$(name: string, submission: string): Observable<any> {
+  submitAnt$(antName: string, submission: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const url = `${environment.submissionApi}/lone-ant/${name}`;
+    const url = `${environment.submissionApi}/lone-ant/${this.auth.username}/${antName}`;
     return this.httpClient.put(url, `"${submission}"`, { headers }).pipe(tap(() => this.refreshAnts()));
   }
 

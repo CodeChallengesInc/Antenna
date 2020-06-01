@@ -1,0 +1,8 @@
+<mat-dialog-content fxFlexFill class="view-code-dialog__content">
+  <div mat-dialog-title>
+    {{ data.ant.antName }}
+  </div>
+  <ngs-code-editor #editor fxFill [theme]="theme" [readOnly]="true" [(codeModel)]="codeModel"
+    [options]="options">
+  </ngs-code-editor>
+</mat-dialog-content>

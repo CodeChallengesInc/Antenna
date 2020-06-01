@@ -44,6 +44,9 @@ import { ThemeSelectorComponent } from './components/theme-selector/theme-select
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { TestAntDialogComponent } from './components/test-ant-dialog/test-ant-dialog.component';
+import { ViewCodeDialogComponent } from './components/view-code-dialog/view-code-dialog.component';
+import { AntErrorDialogComponent } from './components/ant-error-dialog/ant-error-dialog.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { TestAntDialogComponent } from './components/test-ant-dialog/test-ant-di
     RestrictedValuesDirective,
     ThemeSelectorComponent,
     TestAntDialogComponent,
+    ViewCodeDialogComponent,
+    AntErrorDialogComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +112,8 @@ import { TestAntDialogComponent } from './components/test-ant-dialog/test-ant-di
   entryComponents: [
     RulesDialogComponent,
     CreateAntDialogComponent,
+    ViewCodeDialogComponent,
+    AntErrorDialogComponent,
   ]
 })
 export class AppModule { }

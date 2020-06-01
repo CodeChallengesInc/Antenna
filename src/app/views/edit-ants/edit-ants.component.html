@@ -24,9 +24,9 @@
         </mat-toolbar>
 
         <mat-nav-list class="edit-ants__nav-list" fxFlex>
-          <mat-list-item *ngFor="let ant of ants" [routerLink]="ant.username" routerLinkActive="edit-ants__active-link">
+          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.antName]" routerLinkActive="edit-ants__active-link">
             <mat-icon mat-list-icon>bug_report</mat-icon>
-            <span matLine>{{ ant.username }}</span>
+            <span matLine>{{ ant.antName }}</span>
           </mat-list-item>
         </mat-nav-list>
       </div>

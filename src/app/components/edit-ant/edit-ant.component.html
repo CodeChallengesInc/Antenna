@@ -6,15 +6,15 @@
       <mat-icon>play_circle_outline</mat-icon>
     </button>
     <div fxFlex></div>
-    <button mat-icon-button (click)="submit()" [disabled]="!dirty" matTooltip="Save this ant">
+    <button *ngIf="!readonly" mat-icon-button (click)="submit()" [disabled]="!dirty" matTooltip="Save this ant">
       <mat-icon>save</mat-icon>
     </button>
-    <button mat-icon-button (click)="delete()" matTooltip="Delete this ant">
+    <button *ngIf="!readonly" mat-icon-button (click)="delete()" matTooltip="Delete this ant">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-toolbar>
   <div class="edit-ant__code-wrapper" fxFlex>
-    <ngs-code-editor #editor fxFill [theme]="theme" [readOnly]="false" [(codeModel)]="codeModel"
+    <ngs-code-editor #editor fxFill [theme]="theme" [readOnly]="readonly" [(codeModel)]="codeModel"
       [options]="options" (valueChanged)="onChanged()">
     </ngs-code-editor>
   </div>
