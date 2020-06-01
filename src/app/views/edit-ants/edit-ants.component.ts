@@ -8,7 +8,7 @@ import { CreateAntDialogComponent } from 'src/app/components/create-ant-dialog/c
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'cci-edit-ants',
@@ -39,6 +39,10 @@ export class EditAntsComponent implements OnInit {
   logout(): void {
     this.auth.logout();
     this.router.navigate(['/home']);
+  }
+
+  isReadonly(ant: SubmissionsResponse): boolean {
+    return this.auth.username?.toLowerCase() !== ant.username?.toLowerCase();
   }
 
   createAnt(): void {

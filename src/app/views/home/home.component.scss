@@ -8,3 +8,13 @@
   text-align: center;
   outline: none;
 }
+
+.home__content {
+  overflow: auto;
+  padding: 32px;
+  max-width: 80%;
+}
+
+.home__welcome {
+  margin-top: 32px;
+}
