@@ -22,6 +22,8 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   cellSize = 6;
   highScore = 0;
 
+  private mousePos: any;
+
   constructor(private cdr: ChangeDetectorRef, private theme: ThemeService) { }
 
   ngAfterViewInit(): void {
@@ -30,6 +32,12 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     this.canvasWidth = this.grid[0].length * this.cellSize + this.cellSize * 2;
     this.cdr.detectChanges();
     window.requestAnimationFrame(() => this.draw());
+    this.canvas.nativeElement.addEventListener('mousemove', (event: MouseEvent) => {
+      this.mousePos = {
+        x: event.offsetX,
+        y: event.offsetY
+      };
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -73,6 +81,19 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     }
   }
 
+  drawLabels() {
+    this.ants.forEach(ant => {
+      const centerX = ant.column * this.cellSize + (this.cellSize / 2);
+      const centerY = ant.row * this.cellSize + (this.cellSize / 2);
+      const diameter = this.cellSize + 10;
+      if (this.mousePos.x > (centerX - diameter) && this.mousePos.x < (centerX + diameter) &&
+      this.mousePos.y > (centerY - diameter) && this.mousePos.y < (centerY + diameter)) {
+        const antName = ant.antName;
+        this.drawLabel(antName, centerX, centerY, diameter);
+      }
+    });
+  }
+
   draw(previousAnts?: Ant[], step?: number): void {
     if (this.context) {
       this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
@@ -90,9 +111,9 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
       this.context.globalAlpha = 1;
 
-      for (const ant of this.food) {
-        const centerX = ant.column * this.cellSize + (this.cellSize / 2);
-        const centerY = ant.row * this.cellSize + (this.cellSize / 2);
+      for (const food of this.food) {
+        const centerX = food.column * this.cellSize + (this.cellSize / 2);
+        const centerY = food.row * this.cellSize + (this.cellSize / 2);
         const radius = this.cellSize / 2 - 1;
         const stroke = this.theme.isDarkTheme() ? 'black' : 'darkgray';
         this.drawCircle(centerX, centerY, radius, 'brown', stroke, 0);
@@ -121,10 +142,11 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
           const centerX = this.ants[i].column * this.cellSize + (this.cellSize / 2);
           const centerY = this.ants[i].row * this.cellSize + (this.cellSize / 2);
           const radius = this.cellSize / 2 + 2;
-          const color = this.ants[i].error ? 'red' :
           this.drawCircle(centerX, centerY, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
         }
       }
+
+      this.drawLabels();
 
       step += 0.2;
       if (step <= 1) {
@@ -152,5 +174,14 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     this.context.lineWidth = lineWidth;
     this.context.strokeStyle = strokeColor;
     this.context.stroke();
+  }
+
+  private drawLabel(text: string, antCenterX: number, antCenterY: number, antRadius) {
+    this.context.font = '12px Arial';
+    const textWidth = this.context.measureText(text).width;
+    this.context.fillStyle = '#000000AA';
+    this.context.fillRect(antCenterX - textWidth / 2 + 5, antCenterY - antRadius - 4, textWidth + 4, 16);
+    this.context.fillStyle = '#FFFFFF';
+    this.context.fillText(text, antCenterX - textWidth / 2 + 7, antCenterY - antRadius + 7);
   }
 }
