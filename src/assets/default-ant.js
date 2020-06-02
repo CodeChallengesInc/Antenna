@@ -12,7 +12,8 @@ Invalid Outputs:
 
 antView contains the cells around the ant.  Each item in the array contains:
     color: a number from 1-8
-    food: 1 if present, 0 if not.
+    food: 1 if present, 0 if not
+    ant: 1 if an ant is present, 0 if not
 
 Cells are ordered in the following way:
         0 1 2

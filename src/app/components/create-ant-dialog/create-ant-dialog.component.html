@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Create Ant</h2>
 
   <mat-dialog-content>
-    <mat-form-field class="create-ant-dialog__ant-name">
+    <mat-form-field fxFlex>
       <input #antNameInput matInput name="antName" maxlength="40" appRestrictedValues placeholder="Ant Name" required [(ngModel)]="antName" autocomplete="off">
       <mat-error *ngIf="addAntForm.controls.antName?.errors?.restrictedValue">
         An ant with this name already exists

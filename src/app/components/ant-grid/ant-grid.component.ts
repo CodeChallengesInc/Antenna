@@ -18,6 +18,8 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   @Input() food: Food[] = [];
   @Input() elapsedTicks = 0;
   @Input() config: ConfigResponse;
+  @Input() fullWidth = false;
+  @Input() mobileDialog = false;
 
   canvasWidth = 0;
   canvasHeight = 0;

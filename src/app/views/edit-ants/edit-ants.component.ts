@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SubmissionsResponse } from 'src/app/models/submissions';
 import { Observable } from 'rxjs';
 import { SubmissionService } from '../../services/submission.service';
@@ -9,15 +9,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { ScreenService } from '../../services/screen.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'cci-edit-ants',
   templateUrl: './edit-ants.component.html',
   styleUrls: ['./edit-ants.component.scss']
 })
-export class EditAntsComponent implements OnInit {
+export class EditAntsComponent implements OnInit, AfterViewInit {
 
   ants$: Observable<SubmissionsResponse[]>;
+  readonly isMobile$: Observable<boolean>;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   constructor(
     private submissionService: SubmissionService,
@@ -25,8 +29,16 @@ export class EditAntsComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private auth: AuthService,
+    screen: ScreenService,
     private dialog: MatDialog) {
     this.ants$ = submissionService.ants$;
+    this.isMobile$ = screen.isMobile$;
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.route.firstChild) {
+      this.sidenav.open();
+    }
   }
 
   ngOnInit(): void {
@@ -46,7 +58,7 @@ export class EditAntsComponent implements OnInit {
   }
 
   createAnt(): void {
-    const dialogRef = this.dialog.open(CreateAntDialogComponent);
+    const dialogRef = this.dialog.open(CreateAntDialogComponent, { width: '350px' });
     dialogRef.afterClosed().subscribe(antName => {
       if (antName) {
         this.http.get('assets/default-ant.js', { responseType: 'text' }).pipe(switchMap(code => {

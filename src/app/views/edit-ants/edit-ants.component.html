@@ -3,6 +3,9 @@
     <button mat-icon-button routerLink="/home">
       <mat-icon>arrow_back</mat-icon>
     </button>
+    <button mat-icon-button (click)="sideNav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <div fxFlex></div>
     <span>Ant Collection</span>
     <button mat-icon-button (click)="showRules()" matTooltip="Show the rules">
@@ -17,7 +20,7 @@
 
 
   <mat-sidenav-container fxFlex>
-    <mat-sidenav mode="side" opened>
+    <mat-sidenav #sideNav [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="!(isMobile$ | async )">
       <div fxFill fxLayout="column">
         <mat-toolbar class="edit-ants__side-nav-toolbar">
           <span fxFlex>Ants</span>
@@ -27,7 +30,7 @@
         </mat-toolbar>
 
         <mat-nav-list class="edit-ants__nav-list" fxFlex>
-          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.antName]" routerLinkActive="edit-ants__active-link">
+          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.antName]" routerLinkActive="edit-ants__active-link" (click)="sideNav.close()">
             <mat-icon mat-list-icon>bug_report</mat-icon>
             <span matLine>{{ ant.antName }}</span>
             <mat-icon *ngIf="isReadonly(ant)" matTooltip="This bug was created by another user">lock</mat-icon>

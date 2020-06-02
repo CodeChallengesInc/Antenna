@@ -3,7 +3,10 @@
     Ticks: {{ elapsedTicks | number }} / {{ config.maxTicks | number }}
   </ng-container>
 </div>
-<canvas #canvas class="ant-grid__canvas mat-elevation-z2" [width]="canvasWidth" [height]="canvasHeight">
+<canvas #canvas class="ant-grid__canvas mat-elevation-z2" [width]="canvasWidth" [height]="canvasHeight"
+  [style.maxWidth]="canvasWidth + 'px'"
+  [class.ant-grid__canvas--full-width]="fullWidth"
+  [class.ant-grid__canvas--mobile-dialog-width]="mobileDialog">
 </canvas>
 <ng-template #finishedTemplate>
   Game Over
