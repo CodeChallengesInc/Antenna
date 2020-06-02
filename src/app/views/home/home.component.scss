@@ -3,17 +3,20 @@
   width: 200px;
 }
 
-.home__content {
-  overflow: auto;
-  padding: 32px;
+.home__tile--mobile {
+  height: 130px;
+  width: 130px;
 }
 
-.home__welcome {
-  margin-top: 32px;
+.home__content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 32px;
 }
 
 .home__rules {
   max-width: 1000px;
+  width: 100%;
 }
 
 .home__divider {

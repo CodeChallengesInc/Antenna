@@ -2,6 +2,15 @@
   text-align: center;
 }
 
-canvas {
+.ant-grid__canvas {
   display: block;
+  border-radius: 3px;
+}
+
+.ant-grid__canvas--full-width {
+  width: 95vw;
+}
+
+.ant-grid__canvas--mobile-dialog-width {
+  width: 70vw;
 }

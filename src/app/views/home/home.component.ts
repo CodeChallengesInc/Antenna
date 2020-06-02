@@ -5,6 +5,7 @@ import { BoardResponse } from 'src/app/models/board';
 import { Router } from '@angular/router';
 import { SubmissionService } from '../../services/submission.service';
 import { AuthService } from '../../services/auth.service';
+import { ScreenService } from '../../services/screen.service';
 
 @Component({
   selector: 'cci-home',
@@ -16,15 +17,18 @@ export class HomeComponent {
   board$: Observable<BoardResponse>;
   username = '';
   readonly rules$: Observable<string>;
+  readonly isMobile$: Observable<boolean>;
 
   constructor(
     private gameService: GameService,
+    private screen: ScreenService,
     private auth: AuthService,
     private router: Router,
     submissionService: SubmissionService,
     ) {
       this.rules$ = submissionService.getRules$();
       this.username = auth.username;
+      this.isMobile$ = screen.isMobile$;
     }
 
   createGame(): void {
