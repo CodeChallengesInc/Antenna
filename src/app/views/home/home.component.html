@@ -9,7 +9,7 @@
     </button>
   </mat-toolbar>
 
-  <div fxLayout="column" fxFlex fxLayoutGap="64px" fxLayoutAlign="start center">
+  <div fxLayout="column" class="home__content" fxFlex fxLayoutGap="64px" fxLayoutAlign="start center">
     <div class="mat-display-3 home__welcome">
       Welcome {{ username }}!
     </div>
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <mat-divider [vertical]="false" style="width: 80%"></mat-divider>
-    <markdown fxFlex class="home__content" [data]="rules$ | async"></markdown>
+    <mat-divider [vertical]="false" class="home__divider"></mat-divider>
+    <markdown class="home__rules" fxFlex [data]="rules$ | async"></markdown>
   </div>
 </div>
