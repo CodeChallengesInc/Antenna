@@ -1,0 +1,11 @@
+.app__content,
+.app__background {
+  position: absolute;
+}
+
+.app__background {
+  background-image: url('/assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+}

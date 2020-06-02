@@ -15,7 +15,7 @@
       <mat-card-content>
 
           <mat-form-field class="login__username">
-            <input #usernameInput matInput name="username" maxlength="40" placeholder="Username" required
+            <input #usernameInput matInput name="username" maxlength="40" placeholder="Username" required (keydown.enter)="login()"
               [(ngModel)]="username" autocomplete="off">
               <mat-hint>
                 No password is required. Remember this username to be able to edit bugs created as this username.
@@ -27,7 +27,7 @@
 
       </mat-card-content>
       <mat-card-actions align="center">
-        <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="login()">Login</button>
+        <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="login()" type="button">Login</button>
       </mat-card-actions>
     </mat-card>
   </form>
