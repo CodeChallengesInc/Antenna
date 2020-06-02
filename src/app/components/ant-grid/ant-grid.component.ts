@@ -27,6 +27,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   highScore = 0;
 
   private mousePos: any;
+  private scaleFactor: number;
 
   constructor(private cdr: ChangeDetectorRef, private theme: ThemeService) { }
 
@@ -36,10 +37,11 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     this.canvasWidth = this.grid[0].length * this.cellSize + this.cellSize * 2;
     this.cdr.detectChanges();
     window.requestAnimationFrame(() => this.draw());
+    this.scaleFactor = this.canvasWidth / this.canvas.nativeElement.getBoundingClientRect().width;
     this.canvas.nativeElement.addEventListener('mousemove', (event: MouseEvent) => {
       this.mousePos = {
-        x: event.offsetX,
-        y: event.offsetY
+        x: event.offsetX * this.scaleFactor,
+        y: event.offsetY * this.scaleFactor
       };
     });
   }
@@ -90,7 +92,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
       this.ants.forEach(ant => {
         const centerX = ant.column * this.cellSize + (this.cellSize / 2);
         const centerY = ant.row * this.cellSize + (this.cellSize / 2);
-        const diameter = this.cellSize + 10;
+        const diameter = this.cellSize * 3;
         if (this.mousePos.x > (centerX - diameter) && this.mousePos.x < (centerX + diameter) &&
         this.mousePos.y > (centerY - diameter) && this.mousePos.y < (centerY + diameter)) {
           const antName = ant.antName;
