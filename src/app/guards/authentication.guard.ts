@@ -14,7 +14,7 @@ export class AuthenticationGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.auth.username) {
-      this.router.navigate(['/login'], { queryParams: { returnUrl: next.url }});
+      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
     }
     return !!this.auth.username;
   }
