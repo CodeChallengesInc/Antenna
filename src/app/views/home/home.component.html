@@ -14,7 +14,7 @@
       Welcome {{ username }}!
     </div>
     <div fxLayout="row"  fxLayoutAlign="center center" [fxLayoutGap]="(isMobile$ | async) ? '16px' : '64px'">
-      <button mat-raised-button color="accent" class="home__tile" [class.home__tile--mobile]="isMobile$ | async" (click)="createGame()">
+      <button mat-raised-button class="home__tile" [class.home__tile--mobile]="isMobile$ | async" (click)="createGame()">
         <div fxLayout="column" fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">show_chart</mat-icon>
           <div class="mat-subheading-2" [style.marginBottom]="(isMobile$ | async) ? '0' : '16px'">
@@ -26,7 +26,7 @@
         </div>
       </button>
 
-      <button mat-raised-button color="accent" class="home__tile" routerLink="/edit-ants" [class.home__tile--mobile]="isMobile$ | async">
+      <button mat-raised-button class="home__tile" routerLink="/edit-ants" [class.home__tile--mobile]="isMobile$ | async">
         <div fxLayout="column" fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">bug_report</mat-icon>
           <div class="mat-subheading-2 home__button-title" [style.marginBottom]="(isMobile$ | async) ? '0' : '16px'">
@@ -38,7 +38,6 @@
         </div>
       </button>
     </div>
-    <mat-divider [vertical]="false" class="home__divider"  *ngIf="!(isMobile$ | async)"></mat-divider>
     <markdown class="home__rules" fxFlex [data]="rules$ | async"></markdown>
   </div>
 </div>

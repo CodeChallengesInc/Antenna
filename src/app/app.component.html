@@ -1,3 +1,6 @@
 <div [@routeAnimations]="prepareRoute(outlet)" fxFill>
-  <router-outlet #outlet="outlet"></router-outlet>
+  <div class="app__background" fxFill></div>
+  <div class="app__content" fxFill>
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>
