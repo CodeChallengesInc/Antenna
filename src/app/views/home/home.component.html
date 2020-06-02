@@ -14,7 +14,7 @@
       Welcome {{ username }}!
     </div>
     <div fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="64px">
-      <div class="home__tile mat-elevation-z2" matRipple fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px" (click)="createGame()">
+      <div class="home__tile mat-elevation-z2" matRipple fxLayoutAlign="start center" fxLayout="column" (click)="createGame()">
         <div fxFlex fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">show_chart</mat-icon>
         </div>
@@ -25,7 +25,7 @@
           Start a new game
         </div>
       </div>
-      <div class="home__tile mat-elevation-z2" matRipple routerLink="/edit-ants" fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px">
+      <div class="home__tile mat-elevation-z2" matRipple routerLink="/edit-ants" fxLayoutAlign="start center" fxLayout="column">
         <div fxFlex fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">bug_report</mat-icon>
         </div>
