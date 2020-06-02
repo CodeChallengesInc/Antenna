@@ -9,35 +9,36 @@
     </button>
   </mat-toolbar>
 
-  <div fxLayout="column" fxFlex fxLayoutGap="64px" fxLayoutAlign="start center">
+  <div fxLayout="column" class="home__content" fxFlex fxLayoutGap="64px" fxLayoutAlign="start center">
     <div class="mat-display-3 home__welcome">
       Welcome {{ username }}!
     </div>
     <div fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="64px">
-      <div class="home__tile mat-elevation-z2" matRipple fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px" (click)="createGame()">
-        <div fxFlex fxLayoutAlign="center center">
+      <button mat-raised-button color="accent" class="home__tile" (click)="createGame()">
+        <div fxLayout="column" fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">show_chart</mat-icon>
+          <div class="mat-subheading-2">
+            New Game
+          </div>
+          <div class="mat-caption">
+            Start a new game
+          </div>
         </div>
-        <div class="mat-subheading-2">
-          New Game
-        </div>
-        <div class="mat-caption">
-          Start a new game
-        </div>
-      </div>
-      <div class="home__tile mat-elevation-z2" matRipple routerLink="/edit-ants" fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="16px">
-        <div fxFlex fxLayoutAlign="center center">
+      </button>
+
+      <button mat-raised-button color="accent" class="home__tile" routerLink="/edit-ants">
+        <div fxLayout="column" fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">bug_report</mat-icon>
+          <div class="mat-subheading-2">
+            Ant Collection
+          </div>
+          <div class="mat-caption">
+            Create and edit ants here
+          </div>
         </div>
-        <div class="mat-subheading-2">
-          Ant Collection
-        </div>
-        <div class="mat-caption">
-          Create and edit ants here
-        </div>
-      </div>
+      </button>
     </div>
-    <mat-divider [vertical]="false" style="width: 80%"></mat-divider>
-    <markdown fxFlex class="home__content" [data]="rules$ | async"></markdown>
+    <mat-divider [vertical]="false" class="home__divider"></mat-divider>
+    <markdown class="home__rules" fxFlex [data]="rules$ | async"></markdown>
   </div>
 </div>

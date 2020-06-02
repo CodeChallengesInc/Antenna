@@ -1,20 +1,21 @@
 .home__tile {
-  margin: 0 24px 24px 0;
   height: 200px;
   width: 200px;
-  cursor: pointer;
-  border-radius: 4px;
-  padding: 16px;
-  text-align: center;
-  outline: none;
 }
 
 .home__content {
   overflow: auto;
   padding: 32px;
-  max-width: 80%;
 }
 
 .home__welcome {
   margin-top: 32px;
+}
+
+.home__rules {
+  max-width: 1000px;
+}
+
+.home__divider {
+  width: 50%;
 }
