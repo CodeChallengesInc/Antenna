@@ -10,7 +10,7 @@
   </mat-toolbar>
 
   <div fxLayout="column" class="home__content" fxFlex [fxLayoutGap]="(isMobile$ | async) ? '32px' : '64px'" fxLayoutAlign="start center">
-    <div [style.marginTop]="(isMobile$ | async) ? '8px' : '32px'" [class.mat-display-3]="!(isMobile$ | async)" [class.mat-headline]="isMobile$ | async">
+    <div [style.marginTop]="(isMobile$ | async) ? '8px' : '32px'" [class.mat-display-3]="!(isMobile$ | async)" [class.mat-display-1]="isMobile$ | async">
       Welcome {{ username }}!
     </div>
     <div fxLayout="row"  fxLayoutAlign="center center" [fxLayoutGap]="(isMobile$ | async) ? '16px' : '64px'">
