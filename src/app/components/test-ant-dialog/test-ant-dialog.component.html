@@ -3,8 +3,8 @@
     <cci-ant-grid class="test-ant-dialog__ant-grid"
       [ants]="board.ants"
       [food]="board.food"
-      [elapsedTicks]="board.elapsedTicks"
-      [config]="config$ | async"
+      [elapsedTicks]="board.gameStatus.elapsedTicks"
+      [gameLength]="board.gameStatus.gameLength"
       [mobileDialog]="isMobile$ | async"
       [grid]="board.grid">
     </cci-ant-grid>

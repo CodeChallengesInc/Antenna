@@ -16,10 +16,10 @@
     <cci-ant-grid
       [ants]="board.ants"
       [food]="board.food"
-      [elapsedTicks]="board.elapsedTicks"
+      [elapsedTicks]="board.gameStatus.elapsedTicks"
+      [gameLength]="board.gameStatus.gameLength"
       [grid]="board.grid"
-      [fullWidth]="true"
-      [config]="config$ | async">
+      [fullWidth]="true">
     </cci-ant-grid>
     <cci-leaderboard [ants]="board.ants"></cci-leaderboard>
   </div>
