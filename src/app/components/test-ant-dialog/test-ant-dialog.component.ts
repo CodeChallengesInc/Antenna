@@ -4,7 +4,6 @@ import { GameService } from '../../services/game.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BoardResponse } from 'src/app/models/board';
-import { ConfigResponse } from 'src/app/models/config';
 import { ScreenService } from '../../services/screen.service';
 
 export interface TestAntDialogData {
@@ -21,7 +20,6 @@ export class TestAntDialogComponent {
 
   readonly board$: Observable<BoardResponse>;
   private gameId = '';
-  readonly config$: Observable<ConfigResponse>;
   readonly isMobile$: Observable<boolean>;
 
   constructor(
@@ -34,7 +32,6 @@ export class TestAntDialogComponent {
       gameId = gameId;
       return gameService.getBoard$(gameId);
     }));
-    this.config$ = gameService.getConfig$();
     // Remove this game when closed / no longer needed
     dialogRef.afterClosed().subscribe(() => {
       if (this.gameId) {

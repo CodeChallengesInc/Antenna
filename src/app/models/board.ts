@@ -17,5 +17,19 @@ export interface BoardResponse {
   grid: number[][];
   ants: Ant[];
   food: Food[];
-  elapsedTicks: number;
+  gameStatus: GameStatus;
+  gameType: GameType;
 }
+
+export interface GameStatus {
+  gameLength: number;
+  ticksPerSecond: number;
+  elapsedTicks: number;
+  foodLeft: number;
+}
+
+export enum GameType {
+  LoneAnt = 'LoneAnt',
+  SpawningAnts = 'SpawningAnts',
+}
+
