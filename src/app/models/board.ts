@@ -1,5 +1,6 @@
 export interface Ant {
   antName: string;
+  name: string;
   column: number;
   row: number;
   score: number;
@@ -15,7 +16,7 @@ export interface Food {
 
 export interface BoardResponse {
   grid: number[][];
-  ants: Ant[];
+  animals: Ant[];
   food: Food[];
   gameStatus: GameStatus;
   gameType: GameType;

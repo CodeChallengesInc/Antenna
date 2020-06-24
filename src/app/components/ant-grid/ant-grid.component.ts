@@ -13,7 +13,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   public context: CanvasRenderingContext2D;
 
   @Input() grid: number[][] = [];
-  @Input() ants: Ant[] = [];
+  @Input() animals: Ant[] = [];
   @Input() food: Food[] = [];
   @Input() elapsedTicks: 0;
   @Input() gameLength: 0;
@@ -46,9 +46,9 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.ants) {
-      if (this.ants && this.ants.length > 1) {
-        const leader = this.ants.sort((a, b) => {
+    if (changes.animals) {
+      if (this.animals && this.animals.length > 1) {
+        const leader = this.animals.sort((a, b) => {
           if (a.score > b.score) {
             return 1;
           } else if (a.score < b.score) {
@@ -56,12 +56,12 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
           } else {
             return 0;
           }
-        })[this.ants.length - 1];
+        })[this.animals.length - 1];
         if (leader && leader.score) {
           this.highScore = leader.score;
         }
       }
-      window.requestAnimationFrame(() => this.draw(changes.ants.previousValue));
+      window.requestAnimationFrame(() => this.draw(changes.animals.previousValue));
     }
   }
 
@@ -88,7 +88,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
   drawLabels() {
     if (this.mousePos) {
-      this.ants.forEach(ant => {
+      this.animals.forEach(ant => {
         const centerX = ant.column * this.cellSize + (this.cellSize / 2);
         const centerY = ant.row * this.cellSize + (this.cellSize / 2);
         const diameter = this.cellSize * 3;
@@ -126,14 +126,14 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
         this.drawCircle(centerX, centerY, radius, 'brown', stroke, 0);
       }
 
-      for (let i = 0; i < this.ants.length; i++) {
+      for (let i = 0; i < this.animals.length; i++) {
         if (previousAnts) {
           if (!step) {
             step = 0;
           }
           const previousAnt = previousAnts[i];
-          const centerX = this.ants[i].column * this.cellSize + (this.cellSize / 2);
-          const centerY = this.ants[i].row * this.cellSize + (this.cellSize / 2);
+          const centerX = this.animals[i].column * this.cellSize + (this.cellSize / 2);
+          const centerY = this.animals[i].row * this.cellSize + (this.cellSize / 2);
           const prevCenterX = previousAnt.column * this.cellSize + (this.cellSize / 2);
           const prevCenterY = previousAnt.row * this.cellSize + (this.cellSize / 2);
           const dx = prevCenterX + (centerX - prevCenterX) * step;
@@ -141,15 +141,15 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
           const radius = this.cellSize / 2 + 2;
           if (Math.abs(centerX - prevCenterX) > this.cellSize ||
               Math.abs(centerY - prevCenterY) > this.cellSize) {
-            this.drawCircle(centerX, centerY, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
+            this.drawCircle(centerX, centerY, radius, this.animals[i].color, this.getAntStrokeColor(this.animals[i]), 2);
           } else {
-            this.drawCircle(dx, dy, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
+            this.drawCircle(dx, dy, radius, this.animals[i].color, this.getAntStrokeColor(this.animals[i]), 2);
           }
         } else {
-          const centerX = this.ants[i].column * this.cellSize + (this.cellSize / 2);
-          const centerY = this.ants[i].row * this.cellSize + (this.cellSize / 2);
+          const centerX = this.animals[i].column * this.cellSize + (this.cellSize / 2);
+          const centerY = this.animals[i].row * this.cellSize + (this.cellSize / 2);
           const radius = this.cellSize / 2 + 2;
-          this.drawCircle(centerX, centerY, radius, this.ants[i].color, this.getAntStrokeColor(this.ants[i]), 2);
+          this.drawCircle(centerX, centerY, radius, this.animals[i].color, this.getAntStrokeColor(this.animals[i]), 2);
         }
       }
 
