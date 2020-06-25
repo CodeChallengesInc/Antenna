@@ -15,7 +15,6 @@
   <div class="game" fxFlex *ngIf="board$ | async as board else loadingTemplate" fxLayout="column" fxLayoutGap="32px" fxLayoutAlign="start center">
     <cci-ant-grid
       [animals]="board.animals"
-      [food]="board.food"
       [elapsedTicks]="board.gameStatus.elapsedTicks"
       [gameLength]="board.gameStatus.gameLength"
       [grid]="board.grid"

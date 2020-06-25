@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { Ant, Food, GameStatus } from 'src/app/models/board';
+import { Ant, GameStatus } from 'src/app/models/board';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
@@ -12,9 +12,8 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   public context: CanvasRenderingContext2D;
 
-  @Input() grid: number[][] = [];
+  @Input() grid: number[][][] = [];
   @Input() animals: Ant[] = [];
-  @Input() food: Food[] = [];
   @Input() elapsedTicks: 0;
   @Input() gameLength: 0;
   @Input() fullWidth = false;
@@ -108,23 +107,23 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
       for (let i = 0; i < this.grid.length; i++) {
         for (let j = 0; j < this.grid[i].length; j++) {
-          const value = this.grid[i][j];
-          if (value > 1) {
-            this.context.fillStyle = this.getColor(value);
+          const colorValue = this.grid[i][j][0];
+          if (colorValue > 1) {
+            this.context.fillStyle = this.getColor(colorValue);
             this.context.fillRect(j * this.cellSize + this.cellSize, i * this.cellSize + this.cellSize, this.cellSize, this.cellSize);
+          }
+          const foodValue = this.grid[i][j][1];
+          if (foodValue === 1) {
+            const centerX = j * this.cellSize + (this.cellSize / 2);
+            const centerY = i * this.cellSize + (this.cellSize / 2);
+            const radius = this.cellSize / 2 - 1;
+            const stroke = this.theme.isDarkTheme() ? 'black' : 'darkgray';
+            this.drawCircle(centerX, centerY, radius, 'brown', stroke, 0);
           }
         }
       }
 
       this.context.globalAlpha = 1;
-
-      for (const food of this.food) {
-        const centerX = food.column * this.cellSize + (this.cellSize / 2);
-        const centerY = food.row * this.cellSize + (this.cellSize / 2);
-        const radius = this.cellSize / 2 - 1;
-        const stroke = this.theme.isDarkTheme() ? 'black' : 'darkgray';
-        this.drawCircle(centerX, centerY, radius, 'brown', stroke, 0);
-      }
 
       for (let i = 0; i < this.animals.length; i++) {
         if (previousAnts) {
