@@ -9,15 +9,9 @@ export interface Ant {
   creator: string;
 }
 
-export interface Food {
-  column: number;
-  row: number;
-}
-
 export interface BoardResponse {
-  grid: number[][];
+  grid: number[][][];
   animals: Ant[];
-  food: Food[];
   gameStatus: GameStatus;
   gameType: GameType;
 }
