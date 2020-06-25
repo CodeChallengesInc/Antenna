@@ -1,14 +1,13 @@
 <mat-dialog-content>
   <div *ngIf="board$ | async as board else loadingTemplate" fxLayout="column" fxLayoutGap="32px" fxLayoutAlign="start center">
     <cci-ant-grid class="test-ant-dialog__ant-grid"
-      [ants]="board.ants"
-      [food]="board.food"
+      [animals]="board.animals"
       [elapsedTicks]="board.gameStatus.elapsedTicks"
       [gameLength]="board.gameStatus.gameLength"
       [mobileDialog]="isMobile$ | async"
       [grid]="board.grid">
     </cci-ant-grid>
-    <cci-leaderboard [allowViewingCode]="false" [ants]="board.ants"></cci-leaderboard>
+    <cci-leaderboard [allowViewingCode]="false" [animals]="board.animals"></cci-leaderboard>
   </div>
 </mat-dialog-content>
 

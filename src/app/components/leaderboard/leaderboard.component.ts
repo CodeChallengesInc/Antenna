@@ -14,7 +14,7 @@ import { AntErrorDialogComponent } from '../ant-error-dialog/ant-error-dialog.co
 })
 export class LeaderboardComponent implements OnInit, OnChanges {
 
-  @Input() ants: Ant[] = [];
+  @Input() animals: Ant[] = [];
   @Input() allowViewingCode = true;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   displayedColumns: string[] = ['name', 'score', 'menu'];
@@ -23,9 +23,9 @@ export class LeaderboardComponent implements OnInit, OnChanges {
 
   constructor(private dialog: MatDialog, private theme: ThemeService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.ants) {
-      if (this.ants.length > 1) {
-        const leader = this.ants.sort((a, b) => {
+    if (changes.animals) {
+      if (this.animals.length > 1) {
+        const leader = this.animals.sort((a, b) => {
           if (a.score > b.score) {
             return 1;
           } else if (a.score < b.score) {
@@ -33,18 +33,18 @@ export class LeaderboardComponent implements OnInit, OnChanges {
           } else {
             return 0;
           }
-        })[this.ants.length - 1];
+        })[this.animals.length - 1];
         if (leader && leader.score) {
           this.highScore = leader.score;
         }
       }
-      this.dataSource = new MatTableDataSource(this.ants);
+      this.dataSource = new MatTableDataSource(this.animals);
       this.dataSource.sort = this.sort;
     }
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.ants);
+    this.dataSource = new MatTableDataSource(this.animals);
     this.dataSource.sort = this.sort;
   }
 
