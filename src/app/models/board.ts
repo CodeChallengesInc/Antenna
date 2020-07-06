@@ -1,6 +1,5 @@
-export interface Ant {
-  antName: string;
-  name: string;
+export interface Animal {
+  animalName: string;
   column: number;
   row: number;
   score: number;
@@ -11,7 +10,7 @@ export interface Ant {
 
 export interface BoardResponse {
   grid: number[][][];
-  animals: Ant[];
+  animals: Animal[];
   gameStatus: GameStatus;
   gameType: GameType;
 }
@@ -28,3 +27,8 @@ export enum GameType {
   SpawningAnts = 'SpawningAnts',
 }
 
+export interface GameTypeInformation {
+  gameType: string;
+  gameName: string;
+  gameRules: string;
+}

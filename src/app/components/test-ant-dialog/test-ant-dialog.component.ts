@@ -7,7 +7,7 @@ import { BoardResponse } from 'src/app/models/board';
 import { ScreenService } from '../../services/screen.service';
 
 export interface TestAntDialogData {
-  antName: string;
+  animalName: string;
   code: string;
 }
 
@@ -28,7 +28,7 @@ export class TestAntDialogComponent {
     dialogRef: MatDialogRef<TestAntDialogComponent>,
     gameService: GameService) {
     this.isMobile$ = screen.isMobile$;
-    this.board$ = gameService.createTestGame$(data.antName, data.code).pipe(switchMap(gameId => {
+    this.board$ = gameService.createTestGame$('LoneAnt', data.animalName, data.code).pipe(switchMap(gameId => {
       gameId = gameId;
       return gameService.getBoard$(gameId);
     }));

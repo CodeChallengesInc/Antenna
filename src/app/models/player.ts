@@ -1,5 +1,5 @@
 export interface PlayerResponse {
-  antName: string;
+  animalName: string;
   username: string;
   submission: string;
 }

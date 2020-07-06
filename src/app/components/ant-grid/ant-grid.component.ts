@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { Ant, GameStatus } from 'src/app/models/board';
+import { Animal, GameStatus } from 'src/app/models/board';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
   public context: CanvasRenderingContext2D;
 
   @Input() grid: number[][][] = [];
-  @Input() animals: Ant[] = [];
+  @Input() animals: Animal[] = [];
   @Input() elapsedTicks: 0;
   @Input() gameLength: 0;
   @Input() fullWidth = false;
@@ -93,14 +93,14 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
         const diameter = this.cellSize * 3;
         if (this.mousePos.x > (centerX - diameter) && this.mousePos.x < (centerX + diameter) &&
         this.mousePos.y > (centerY - diameter) && this.mousePos.y < (centerY + diameter)) {
-          const antName = ant.antName;
-          this.drawLabel(antName, centerX, centerY, diameter);
+          const animalName = ant.animalName;
+          this.drawLabel(animalName, centerX, centerY, diameter);
         }
       });
     }
   }
 
-  draw(previousAnts?: Ant[], step?: number): void {
+  draw(previousAnts?: Animal[], step?: number): void {
     if (this.context) {
       this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       this.context.globalAlpha = 0.5;
@@ -161,12 +161,12 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private getAntStrokeColor(ant: Ant) {
-    if (ant.error) {
+  private getAntStrokeColor(animal: Animal) {
+    if (animal.error) {
       return 'red';
     }
 
-    if (this.highScore && ant.score === this.highScore) {
+    if (this.highScore && animal.score === this.highScore) {
       return 'gold';
     }
     return this.theme.isDarkTheme() ? 'white' : 'black';

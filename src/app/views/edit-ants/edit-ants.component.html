@@ -12,6 +12,7 @@
       <mat-icon>assignment</mat-icon>
     </button>
     <div fxFlex></div>
+    <cci-game-type-selector></cci-game-type-selector>
     <cci-theme-selector></cci-theme-selector>
     <button mat-icon-button (click)="logout()" matTooltip="Logout">
       <mat-icon>logout</mat-icon>
@@ -30,9 +31,9 @@
         </mat-toolbar>
 
         <mat-nav-list  fxFlex>
-          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.antName]" routerLinkActive="edit-ants__active-link" (click)="antClicked()">
+          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.animalName]" routerLinkActive="edit-ants__active-link" (click)="antClicked()">
             <mat-icon mat-list-icon>bug_report</mat-icon>
-            <span matLine>{{ ant.antName }}</span>
+            <span matLine>{{ ant.animalName }}</span>
             <mat-icon *ngIf="isReadonly(ant)" matTooltip="This bug was created by another user">lock</mat-icon>
           </mat-list-item>
         </mat-nav-list>

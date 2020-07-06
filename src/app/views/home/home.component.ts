@@ -32,7 +32,7 @@ export class HomeComponent {
     }
 
   createGame(): void {
-    this.gameService.createGame$().subscribe(gameId => {
+    this.gameService.createGame$('LoneAnt').subscribe(gameId => {
       this.router.navigate([`game/${gameId}`]);
     });
   }

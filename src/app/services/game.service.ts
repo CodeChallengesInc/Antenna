@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, interval, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { GameStatus } from '../models/board';
+import { GameStatus, GameTypeInformation } from '../models/board';
 import { BoardResponse,  } from '../models/board';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -15,9 +15,15 @@ export class GameService {
 
   private maximumTicks: number;
   getGameStatus$(gameId: string): Observable<GameStatus> {
-    const configUrl = `${environment.backendApi}/gameStatus/${gameId}`;
-    return this.httpClient.get<GameStatus>(configUrl);
+    const gameStatusUrl = `${environment.backendApi}/gameStatus/${gameId}`;
+    return this.httpClient.get<GameStatus>(gameStatusUrl);
   }
+
+  get gameTypes$(): Observable<GameTypeInformation[]> {
+    const gameTypesUrl = `${environment.backendApi}/gameTypes`;
+    return this.httpClient.get<GameTypeInformation[]>(gameTypesUrl);
+  }
+
 
   getBoard$(gameId: string): Observable<BoardResponse> {
     const stopSubject = new Subject();
@@ -46,13 +52,13 @@ export class GameService {
     return this.httpClient.delete(url);
   }
 
-  createGame$(): Observable<string> {
+  createGame$(gameType: string): Observable<string> {
     const url = `${environment.backendApi}/game`;
-    return this.httpClient.post(url, {}, { responseType: 'text' });
+    return this.httpClient.post(url, { gameType }, { responseType: 'text' });
   }
 
-  createTestGame$(antName: string, code: string): Observable<string> {
+  createTestGame$(gameType: string, animalName: string, code: string): Observable<string> {
     const url = `${environment.backendApi}/test`;
-    return this.httpClient.post(url, { antName, code }, { responseType: 'text' });
+    return this.httpClient.post(url, { gameType, animalName, code }, { responseType: 'text' });
   }
 }

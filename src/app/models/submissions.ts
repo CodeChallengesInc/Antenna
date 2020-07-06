@@ -1,5 +1,5 @@
 export interface SubmissionsResponse {
-  antName: string;
+  animalName: string;
   username: string;
   submission: string;
 }

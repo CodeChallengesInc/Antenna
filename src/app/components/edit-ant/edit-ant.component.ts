@@ -18,7 +18,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class EditAntComponent implements OnInit {
 
-  readonly antName$: Observable<string>;
+  readonly animalName$: Observable<string>;
   dirty = false;
   readonly = false;
 
@@ -48,8 +48,8 @@ export class EditAntComponent implements OnInit {
     private themeService: ThemeService,
     private snackBar: MatSnackBar,
     ) {
-    this.antName$ = route.params.pipe(map(p => p.antName));
-    this.route.params.pipe(switchMap(params => this.submissionService.getAnt$(params.antName, params.creatorName))).subscribe(ant => {
+    this.animalName$ = route.params.pipe(map(p => p.animalName));
+    this.route.params.pipe(switchMap(params => this.submissionService.getAnt$(params.animalName, params.creatorName))).subscribe(ant => {
       if (ant) {
         this.codeModel = {
           language: 'javascript',
@@ -83,16 +83,15 @@ export class EditAntComponent implements OnInit {
   }
 
   submit(): void {
-    this.submissionService.submitAnt$(this.route.snapshot.params.antName, this.codeModel.value).subscribe(result => {
+    this.submissionService.submitAnt$(this.route.snapshot.params.animalName, this.codeModel.value).subscribe(result => {
       this.snackBar.open('Ant Saved Successfully', undefined, { duration: 2000 });
       this.dirty = false;
-    });
-  }
+    });  }
 
   testAnt(): void {
     this.dialog.open(TestAntDialogComponent, {
       data: {
-        antName: this.route.snapshot.params.antName,
+        animalName: this.route.snapshot.params.animalName,
         code: this.codeModel.value,
       },
       minWidth: '300px',
@@ -108,9 +107,9 @@ export class EditAntComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      const antName = this.route.snapshot.params.antName;
-      if (result && antName) {
-        this.submissionService.deleteAnt$(antName).subscribe(() => {
+      const animalName = this.route.snapshot.params.animalName;
+      if (result && animalName) {
+        this.submissionService.deleteAnt$(animalName).subscribe(() => {
           this.router.navigate(['edit-ants']);
         });
       }

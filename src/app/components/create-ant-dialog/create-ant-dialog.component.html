@@ -3,11 +3,11 @@
 
   <mat-dialog-content>
     <mat-form-field fxFlex>
-      <input #antNameInput matInput name="antName" maxlength="40" appRestrictedValues placeholder="Ant Name" required [(ngModel)]="antName" autocomplete="off">
-      <mat-error *ngIf="addAntForm.controls.antName?.errors?.restrictedValue">
+      <input #animalNameInput matInput name="animalName" maxlength="40" appRestrictedValues placeholder="Ant Name" required [(ngModel)]="animalName" autocomplete="off">
+      <mat-error *ngIf="addAntForm.controls.animalName?.errors?.restrictedValue">
         An ant with this name already exists
       </mat-error>
-      <mat-error *ngIf="addAntForm.controls.antName?.errors?.required">
+      <mat-error *ngIf="addAntForm.controls.animalName?.errors?.required">
         An ant name is required
       </mat-error>
     </mat-form-field>

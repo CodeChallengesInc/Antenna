@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { Ant } from 'src/app/models/board';
+import { Animal } from 'src/app/models/board';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,11 +14,11 @@ import { AntErrorDialogComponent } from '../ant-error-dialog/ant-error-dialog.co
 })
 export class LeaderboardComponent implements OnInit, OnChanges {
 
-  @Input() animals: Ant[] = [];
+  @Input() animals: Animal[] = [];
   @Input() allowViewingCode = true;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   displayedColumns: string[] = ['name', 'score', 'menu'];
-  dataSource: MatTableDataSource<Ant>;
+  dataSource: MatTableDataSource<Animal>;
   highScore = 0;
 
   constructor(private dialog: MatDialog, private theme: ThemeService) { }
@@ -48,15 +48,15 @@ export class LeaderboardComponent implements OnInit, OnChanges {
     this.dataSource.sort = this.sort;
   }
 
-  viewCode(ant: Ant): void {
-    this.dialog.open(ViewCodeDialogComponent, { data: { ant }, width: '1000px', height: '800px' });
+  viewCode(animal: Animal): void {
+    this.dialog.open(ViewCodeDialogComponent, { data: { animal }, width: '1000px', height: '800px' });
   }
 
-  showError(ant: Ant): void {
-    this.dialog.open(AntErrorDialogComponent, { data: { ant } });
+  showError(animal: Animal): void {
+    this.dialog.open(AntErrorDialogComponent, { data: { animal } });
   }
 
-  getBorderColor(ant: Ant) {
+  getBorderColor(ant: Animal) {
     if (ant.error) {
       return 'red';
     }
