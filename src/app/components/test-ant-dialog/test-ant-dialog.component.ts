@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BoardResponse } from 'src/app/models/board';
 import { ScreenService } from '../../services/screen.service';
+import { GameTypeService } from 'src/app/services/game-type.service';
 
 export interface TestAntDialogData {
   animalName: string;
@@ -26,9 +27,10 @@ export class TestAntDialogComponent {
     @Inject(MAT_DIALOG_DATA) data: TestAntDialogData,
     screen: ScreenService,
     dialogRef: MatDialogRef<TestAntDialogComponent>,
+    private gameTypeService: GameTypeService,
     gameService: GameService) {
     this.isMobile$ = screen.isMobile$;
-    this.board$ = gameService.createTestGame$('LoneAnt', data.animalName, data.code).pipe(switchMap(gameId => {
+    this.board$ = gameService.createTestGame$(gameTypeService.currentGameType, data.animalName, data.code).pipe(switchMap(gameId => {
       gameId = gameId;
       return gameService.getBoard$(gameId);
     }));

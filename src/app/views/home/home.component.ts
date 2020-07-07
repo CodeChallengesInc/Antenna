@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SubmissionService } from '../../services/submission.service';
 import { AuthService } from '../../services/auth.service';
 import { ScreenService } from '../../services/screen.service';
+import { GameTypeService } from 'src/app/services/game-type.service';
 
 @Component({
   selector: 'cci-home',
@@ -20,6 +21,7 @@ export class HomeComponent {
   readonly isMobile$: Observable<boolean>;
 
   constructor(
+    private gameTypeService: GameTypeService,
     private gameService: GameService,
     private screen: ScreenService,
     private auth: AuthService,
@@ -32,7 +34,7 @@ export class HomeComponent {
     }
 
   createGame(): void {
-    this.gameService.createGame$('LoneAnt').subscribe(gameId => {
+    this.gameService.createGame$(this.gameTypeService.currentGameType).subscribe(gameId => {
       this.router.navigate([`game/${gameId}`]);
     });
   }
