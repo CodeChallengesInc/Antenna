@@ -25,6 +25,7 @@ export interface GameStatus {
 export enum GameType {
   LoneAnt = 'LoneAnt',
   SpawningAnts = 'SpawningAnts',
+  FormicAnts = 'FormicAnts'
 }
 
 export interface GameTypeInformation {

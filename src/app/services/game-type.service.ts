@@ -23,7 +23,7 @@ export class GameTypeService {
       this.setGameType(this.currentGameType);
     }
 
-    this.gameTypes$ = of(['LoneAnt', 'SpawningAnts']);
+    this.gameTypes$ = of(['LoneAnt', 'SpawningAnts', 'FormicAnts']);
   }
 
   get gameType(): string {
