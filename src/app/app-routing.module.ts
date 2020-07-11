@@ -39,7 +39,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: ':creatorName/:animalName',
+        path: ':creatorName/:name',
         component: EditAntComponent,
       },
     ],

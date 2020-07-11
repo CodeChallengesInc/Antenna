@@ -1,11 +1,12 @@
 export interface Animal {
-  animalName: string;
+  name: string;
   column: number;
   row: number;
   score: number;
   color: string;
   error: string;
   creator: string;
+  type: number;
 }
 
 export interface BoardResponse {

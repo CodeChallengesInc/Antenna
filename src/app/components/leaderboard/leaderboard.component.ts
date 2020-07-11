@@ -38,6 +38,7 @@ export class LeaderboardComponent implements OnInit, OnChanges {
           this.highScore = leader.score;
         }
       }
+      // this.dataSource = new MatTableDataSource(this.animals.filter( a => a.type === undefined || a.type === 5 ));
       this.dataSource = new MatTableDataSource(this.animals);
       this.dataSource.sort = this.sort;
     }

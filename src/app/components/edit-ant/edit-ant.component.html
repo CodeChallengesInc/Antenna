@@ -1,7 +1,7 @@
 <div fxFlexFill fxLayout="column">
   <mat-toolbar class="edit-ant__toolbar">
     <div fxFlex></div>
-    <span>{{ animalName$ | async }}</span>
+    <span>{{ name$ | async }}</span>
     <button mat-icon-button (click)="testAnt()" matTooltip="Test this ant">
       <mat-icon>play_circle_outline</mat-icon>
     </button>

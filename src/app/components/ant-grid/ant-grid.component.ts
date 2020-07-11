@@ -93,8 +93,8 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
         const diameter = this.cellSize * 3;
         if (this.mousePos.x > (centerX - diameter) && this.mousePos.x < (centerX + diameter) &&
         this.mousePos.y > (centerY - diameter) && this.mousePos.y < (centerY + diameter)) {
-          const animalName = ant.animalName;
-          this.drawLabel(animalName, centerX, centerY, diameter);
+          const name = `${ant.name}${ant.type !== undefined ? ' ' + ant.type : '' } `;
+          this.drawLabel(name, centerX, centerY, diameter);
         }
       });
     }
@@ -137,7 +137,9 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
           const prevCenterY = previousAnt.row * this.cellSize + (this.cellSize / 2);
           const dx = prevCenterX + (centerX - prevCenterX) * step;
           const dy = prevCenterY + (centerY - prevCenterY) * step;
-          const radius = this.cellSize / 2 + 2;
+          const radius = this.animals[i].type === undefined || this.animals[i].type === 5 ?
+           this.cellSize / 2 + 2 :
+           this.cellSize / 4 + 1 ;
           if (Math.abs(centerX - prevCenterX) > this.cellSize ||
               Math.abs(centerY - prevCenterY) > this.cellSize) {
             this.drawCircle(centerX, centerY, radius, this.animals[i].color, this.getAntStrokeColor(this.animals[i]), 2);
@@ -168,6 +170,10 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
 
     if (this.highScore && animal.score === this.highScore) {
       return 'gold';
+    }
+
+    if (animal.type !== undefined && animal.type !== 5) {
+      return 'green';
     }
     return this.theme.isDarkTheme() ? 'white' : 'black';
   }

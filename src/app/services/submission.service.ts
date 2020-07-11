@@ -27,7 +27,7 @@ export class SubmissionService {
     const url = `${environment.submissionApi}/${this.gameTypeService.currentGameType}/submissions`;
     this.httpClient.get<SubmissionsResponse[]>(url).subscribe(ants => {
       ants = ants.sort((a, b) => {
-        return a.animalName.localeCompare(b.animalName);
+        return a.name.localeCompare(b.name);
       });
       this.antsSubject.next(ants);
     });
@@ -48,9 +48,9 @@ export class SubmissionService {
     return this.httpClient.get<PlayerResponse>(url);
   }
 
-  submitAnt$(animalName: string, submission: string): Observable<any> {
+  submitAnt$(name: string, submission: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const url = `${environment.submissionApi}/${this.gameTypeService.currentGameType}/${this.auth.username}/${animalName}`;
+    const url = `${environment.submissionApi}/${this.gameTypeService.currentGameType}/${this.auth.username}/${name}`;
     return this.httpClient.put(url, `"${submission}"`, { headers }).pipe(tap(() => this.refreshAnts()));
   }
 

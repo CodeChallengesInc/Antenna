@@ -8,7 +8,7 @@ import { ScreenService } from '../../services/screen.service';
 import { GameTypeService } from 'src/app/services/game-type.service';
 
 export interface TestAntDialogData {
-  animalName: string;
+  name: string;
   code: string;
 }
 
@@ -30,7 +30,7 @@ export class TestAntDialogComponent {
     private gameTypeService: GameTypeService,
     gameService: GameService) {
     this.isMobile$ = screen.isMobile$;
-    this.board$ = gameService.createTestGame$(gameTypeService.currentGameType, data.animalName, data.code).pipe(switchMap(gameId => {
+    this.board$ = gameService.createTestGame$(gameTypeService.currentGameType, data.name, data.code).pipe(switchMap(gameId => {
       gameId = gameId;
       return gameService.getBoard$(gameId);
     }));

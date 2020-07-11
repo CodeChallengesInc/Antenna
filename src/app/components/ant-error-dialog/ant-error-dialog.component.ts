@@ -3,7 +3,7 @@ import { Animal } from 'src/app/models/board';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface AntErrorDialogData {
-  ant: Animal;
+  animal: Animal;
 }
 
 @Component({

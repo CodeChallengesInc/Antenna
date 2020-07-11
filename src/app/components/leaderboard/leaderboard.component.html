@@ -8,7 +8,7 @@
       <td mat-cell *matCellDef="let animal">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
           <div class="leaderboard__animal" [style.backgroundColor]="animal.color" [style.borderColor]="getBorderColor(animal)"></div>
-          <div>{{ animal.animalName }}</div>
+          <div>{{ animal.name }}</div>
         </div>
       </td>
     </ng-container>

@@ -30,9 +30,9 @@
         </mat-toolbar>
 
         <mat-nav-list  fxFlex>
-          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.animalName]" routerLinkActive="edit-ants__active-link" (click)="antClicked()">
+          <mat-list-item *ngFor="let ant of ants" [routerLink]="[ant.username, ant.name]" routerLinkActive="edit-ants__active-link" (click)="antClicked()">
             <mat-icon mat-list-icon>bug_report</mat-icon>
-            <span matLine>{{ ant.animalName }}</span>
+            <span matLine>{{ ant.name }}</span>
             <mat-icon *ngIf="isReadonly(ant)" matTooltip="This bug was created by another user">lock</mat-icon>
           </mat-list-item>
         </mat-nav-list>

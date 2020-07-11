@@ -1,6 +1,6 @@
 <mat-dialog-content fxFlexFill class="view-code-dialog__content">
   <div mat-dialog-title>
-    {{ data.animal.animalName }}
+    {{ data.animal.name }}
   </div>
   <ngs-code-editor #editor fxFill [theme]="theme" [readOnly]="true" [(codeModel)]="codeModel"
     [options]="options">
