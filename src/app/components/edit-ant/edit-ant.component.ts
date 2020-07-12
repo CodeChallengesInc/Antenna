@@ -83,7 +83,7 @@ export class EditAntComponent implements OnInit {
   }
 
   submit(): void {
-    this.submissionService.submitAnt$(this.route.snapshot.params.name, btoa(this.codeModel.value)).subscribe(result => {
+    this.submissionService.submitAnt$(this.route.snapshot.params.name, this.codeModel.value).subscribe(result => {
       this.snackBar.open('Ant Saved Successfully', undefined, { duration: 2000 });
       this.dirty = false;
     });  }

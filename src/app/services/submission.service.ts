@@ -51,7 +51,7 @@ export class SubmissionService {
   submitAnt$(name: string, submission: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const url = `${environment.submissionApi}/${this.gameTypeService.currentGameType}/${this.auth.username}/${name}`;
-    return this.httpClient.put(url, `"${submission}"`, { headers }).pipe(tap(() => this.refreshAnts()));
+    return this.httpClient.put(url, `"${btoa(submission)}"`, { headers }).pipe(tap(() => this.refreshAnts()));
   }
 
   deleteAnt$(name: string): Observable<any> {
