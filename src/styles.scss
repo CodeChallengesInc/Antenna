@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@use '~@angular/material' as mat;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; overflow: hidden; }
@@ -8,11 +8,11 @@ body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; overfl
 @import './app/components/edit-ant/edit-ant.theme';
 @import './app/views/home/home.theme';
 
-$custom-typography: mat-typography-config(
+$custom-typography: mat.define-typography-config(
   $font-family: "Quicksand"
 );
 
-@include mat-core($custom-typography);
+@include mat.core($custom-typography);
 
 @mixin custom-components-theme($theme) {
   @include ant-grid-theme($theme);
@@ -22,38 +22,38 @@ $custom-typography: mat-typography-config(
 }
 
 .light-deeppurple-amber {
-  $light-primary: mat-palette($mat-deep-purple);
-  $light-accent: mat-palette($mat-amber);
-  $light-warn: mat-palette($mat-red);
-  $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
-  @include angular-material-theme($light-theme);
+  $light-primary: mat.define-palette(mat.$deep-purple-palette);
+  $light-accent: mat.define-palette(mat.$amber-palette);
+  $light-warn: mat.define-palette(mat.$red-palette);
+  $light-theme: mat.define-light-theme($light-primary, $light-accent, $light-warn);
+  @include mat.all-component-themes($light-theme);
   @include custom-components-theme($light-theme);
 }
 
 .light-indigo-pink {
-  $light-primary: mat-palette($mat-indigo);
-  $light-accent: mat-palette($mat-pink);
-  $light-warn: mat-palette($mat-red);
-  $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
-  @include angular-material-theme($light-theme);
+  $light-primary: mat.define-palette(mat.$indigo-palette);
+  $light-accent: mat.define-palette(mat.$pink-palette);
+  $light-warn: mat.define-palette(mat.$red-palette);
+  $light-theme: mat.define-light-theme($light-primary, $light-accent, $light-warn);
+  @include mat.all-component-themes($light-theme);
   @include custom-components-theme($light-theme);
 }
 
 .dark-purple-green {
-  $dark-primary: mat-palette($mat-purple);
-  $dark-accent: mat-palette($mat-green);
-  $dark-warn: mat-palette($mat-red);
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include angular-material-theme($dark-theme);
+  $dark-primary: mat.define-palette(mat.$purple-palette);
+  $dark-accent: mat.define-palette(mat.$green-palette);
+  $dark-warn: mat.define-palette(mat.$red-palette);
+  $dark-theme: mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include mat.all-component-themes($dark-theme);
   @include custom-components-theme($dark-theme);
 }
 
 .dark-pink-bluegrey {
-  $dark-primary: mat-palette($mat-pink);
-  $dark-accent: mat-palette($mat-blue-grey);
-  $dark-warn: mat-palette($mat-red);
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include angular-material-theme($dark-theme);
+  $dark-primary: mat.define-palette(mat.$pink-palette);
+  $dark-accent: mat.define-palette(mat.$blue-grey-palette);
+  $dark-warn: mat.define-palette(mat.$red-palette);
+  $dark-theme: mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include mat.all-component-themes($dark-theme);
   @include custom-components-theme($dark-theme);
 }
 
