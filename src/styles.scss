@@ -8,11 +8,20 @@ body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; overfl
 @import './app/components/edit-ant/edit-ant.theme';
 @import './app/views/home/home.theme';
 
-$custom-typography: mat.define-typography-config(
+$custom-typography: mat.define-legacy-typography-config(
   $font-family: "Quicksand"
 );
 
-@include mat.core($custom-typography);
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy($custom-typography);`
+@include mat.all-legacy-component-typographies($custom-typography);
+@include mat.legacy-core();
 
 @mixin custom-components-theme($theme) {
   @include ant-grid-theme($theme);
@@ -26,7 +35,7 @@ $custom-typography: mat.define-typography-config(
   $light-accent: mat.define-palette(mat.$amber-palette);
   $light-warn: mat.define-palette(mat.$red-palette);
   $light-theme: mat.define-light-theme($light-primary, $light-accent, $light-warn);
-  @include mat.all-component-themes($light-theme);
+  @include mat.all-legacy-component-themes($light-theme);
   @include custom-components-theme($light-theme);
 }
 
@@ -35,7 +44,7 @@ $custom-typography: mat.define-typography-config(
   $light-accent: mat.define-palette(mat.$pink-palette);
   $light-warn: mat.define-palette(mat.$red-palette);
   $light-theme: mat.define-light-theme($light-primary, $light-accent, $light-warn);
-  @include mat.all-component-themes($light-theme);
+  @include mat.all-legacy-component-themes($light-theme);
   @include custom-components-theme($light-theme);
 }
 
@@ -44,7 +53,7 @@ $custom-typography: mat.define-typography-config(
   $dark-accent: mat.define-palette(mat.$green-palette);
   $dark-warn: mat.define-palette(mat.$red-palette);
   $dark-theme: mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include mat.all-component-themes($dark-theme);
+  @include mat.all-legacy-component-themes($dark-theme);
   @include custom-components-theme($dark-theme);
 }
 
@@ -53,7 +62,7 @@ $custom-typography: mat.define-typography-config(
   $dark-accent: mat.define-palette(mat.$blue-grey-palette);
   $dark-warn: mat.define-palette(mat.$red-palette);
   $dark-theme: mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include mat.all-component-themes($dark-theme);
+  @include mat.all-legacy-component-themes($dark-theme);
   @include custom-components-theme($dark-theme);
 }
 

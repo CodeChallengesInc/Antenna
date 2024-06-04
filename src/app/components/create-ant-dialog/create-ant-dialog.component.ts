@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'cci-create-ant-dialog',

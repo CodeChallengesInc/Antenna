@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, ChangeDetectorR
 import { SubmissionsResponse } from 'src/app/models/submissions';
 import { Observable, Subscription } from 'rxjs';
 import { SubmissionService } from '../../services/submission.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { RulesDialogComponent } from 'src/app/components/rules-dialog/rules-dialog.component';
 import { CreateAntDialogComponent } from 'src/app/components/create-ant-dialog/create-ant-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
