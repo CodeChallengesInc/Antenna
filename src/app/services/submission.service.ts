@@ -50,7 +50,7 @@ export class SubmissionService {
   submitAnt$(antName: string, submission: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const url = `${environment.submissionApi}/lone-ant/${this.auth.username}/${antName}`;
-    return this.httpClient.put(url, `"${submission}"`, { headers }).pipe(tap(() => this.refreshAnts()));
+    return this.httpClient.put(url, `${JSON.stringify(submission)}`, { headers }).pipe(tap(() => this.refreshAnts()));
   }
 
   deleteAnt$(name: string): Observable<any> {
