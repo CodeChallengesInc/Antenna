@@ -27,7 +27,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { CodeEditorModule } from '@ngstack/code-editor';
 
 
-import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { MARKED_OPTIONS, MarkdownModule, provideMarkdown } from 'ngx-markdown';
 import { RulesDialogComponent } from './components/rules-dialog/rules-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateAntDialogComponent } from './components/create-ant-dialog/create-ant-dialog.component';
@@ -94,20 +94,18 @@ import { LoginComponent } from './components/login/login.component';
         MatTabsModule,
         MatSnackBarModule,
         CodeEditorModule.forRoot(),
-        MarkdownModule.forRoot({
-            markedOptions: {
-                provide: MarkedOptions,
-                useValue: {
-                    gfm: true,
-                    breaks: false,
-                    pedantic: false,
-                    smartLists: true,
-                    smartypants: false,
-                },
-            },
-        }),
+        MarkdownModule.forRoot(),
     ],
-    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideMarkdown({
+      markedOptions: {
+        provide: MARKED_OPTIONS,
+        useValue: {
+          gfm: true,
+          breaks: false,
+          pedantic: false,
+        },
+      },
+    })],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
