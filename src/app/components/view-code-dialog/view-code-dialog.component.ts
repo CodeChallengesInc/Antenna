@@ -43,7 +43,7 @@ export class ViewCodeDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.submissionService.getAnt$(this.data.ant.antName, this.data.ant.creator).subscribe(submission => {
+    this.submissionService.getAnt$(this.data.ant.name, this.data.ant.creator).subscribe(submission => {
       this.codeModel = {
         language: 'javascript',
         uri: '',
