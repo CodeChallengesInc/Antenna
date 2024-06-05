@@ -33,7 +33,6 @@ export class GameService {
         if (value.gameStatus.elapsedTicks === this.maximumTicks) {
           // Use settimeout here so a value is still emitted even when loading a completed board
           setTimeout(() => {
-            stopSubject.next();
             stopSubject.complete();
           }, 0);
 
