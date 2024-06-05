@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -48,8 +48,7 @@ import { ViewCodeDialogComponent } from './components/view-code-dialog/view-code
 import { AntErrorDialogComponent } from './components/ant-error-dialog/ant-error-dialog.component';
 import { LoginComponent } from './components/login/login.component';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HomeComponent,
         GameComponent,
@@ -68,12 +67,10 @@ import { LoginComponent } from './components/login/login.component';
         AntErrorDialogComponent,
         LoginComponent,
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         FlexLayoutModule,
         AppRoutingModule,
         MatButtonModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         MatToolbarModule,
         MatRadioModule,
@@ -94,18 +91,14 @@ import { LoginComponent } from './components/login/login.component';
         MatTabsModule,
         MatSnackBarModule,
         CodeEditorModule.forRoot(),
-        MarkdownModule.forRoot(),
-    ],
-    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideMarkdown({
-      markedOptions: {
-        provide: MARKED_OPTIONS,
-        useValue: {
-          gfm: true,
-          breaks: false,
-          pedantic: false,
-        },
-      },
-    })],
-    bootstrap: [AppComponent]
-})
+        MarkdownModule.forRoot()], providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideMarkdown({
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useValue: {
+                    gfm: true,
+                    breaks: false,
+                    pedantic: false,
+                },
+            },
+        }), provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
