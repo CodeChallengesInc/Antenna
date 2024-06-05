@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Ant } from 'src/app/models/board';
+import { Animal } from 'src/app/models/board';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CodeModel } from '@ngstack/code-editor';
 import { ThemeService } from 'src/app/services/theme.service';
 import { SubmissionService } from '../../services/submission.service';
 
 export interface ViewCodeDialogData {
-  ant: Ant;
+  animal: Animal;
 }
 
 @Component({
@@ -43,7 +43,7 @@ export class ViewCodeDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.submissionService.getAnt$(this.data.ant.antName, this.data.ant.creator).subscribe(submission => {
+    this.submissionService.getAnt$(this.data.animal.name, this.data.animal.creator).subscribe(submission => {
       this.codeModel = {
         language: 'javascript',
         uri: '',

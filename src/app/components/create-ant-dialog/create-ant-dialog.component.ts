@@ -8,19 +8,19 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateAntDialogComponent implements AfterViewInit {
 
-  antName = 'New Ant';
+  name = 'New Ant';
 
-  @ViewChild('antNameInput') antNameInput?: ElementRef;
+  @ViewChild('nameInput') nameInput?: ElementRef;
 
   constructor(private dialogRef: MatDialogRef<CreateAntDialogComponent>) { }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.antNameInput.nativeElement.select();
+      this.nameInput.nativeElement.select();
     }, 0);
   }
 
   createAnt(): void {
-    this.dialogRef.close(this.antName);
+    this.dialogRef.close(this.name);
   }
 }

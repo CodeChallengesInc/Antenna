@@ -1,5 +1,4 @@
-export interface Ant {
-  antName: string;
+export interface Animal {
   name: string;
   column: number;
   row: number;
@@ -7,11 +6,12 @@ export interface Ant {
   color: string;
   error: string;
   creator: string;
+  type: number;
 }
 
 export interface BoardResponse {
   grid: number[][][];
-  animals: Ant[];
+  animals: Animal[];
   gameStatus: GameStatus;
   gameType: GameType;
 }
@@ -26,5 +26,11 @@ export interface GameStatus {
 export enum GameType {
   LoneAnt = 'LoneAnt',
   SpawningAnts = 'SpawningAnts',
+  FormicAnts = 'FormicAnts'
 }
 
+export interface GameTypeInformation {
+  gameType: string;
+  gameName: string;
+  gameRules: string;
+}

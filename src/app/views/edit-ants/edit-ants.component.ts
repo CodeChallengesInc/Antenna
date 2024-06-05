@@ -81,12 +81,12 @@ export class EditAntsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   createAnt(): void {
     const dialogRef = this.dialog.open(CreateAntDialogComponent, { width: '350px' });
-    dialogRef.afterClosed().subscribe(antName => {
-      if (antName) {
+    dialogRef.afterClosed().subscribe(name => {
+      if (name) {
         this.http.get('assets/default-ant.js', { responseType: 'text' }).pipe(switchMap(code => {
-          return this.submissionService.submitAnt$(antName, code);
+          return this.submissionService.submitAnt$(name, code);
         })).subscribe(() => {
-          this.router.navigate(['/edit-ants', this.auth.username, antName]);
+          this.router.navigate(['/edit-ants', this.auth.username, name]);
         });
       }
     });

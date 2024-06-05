@@ -1,0 +1,12 @@
+<button mat-icon-button [matMenuTriggerFor]="gameTypeMenu">
+  <mat-icon>games</mat-icon>
+</button>
+
+<mat-menu #gameTypeMenu="matMenu">
+  <button mat-menu-item *ngFor="let gameType of gameTypes$ | async" (click)="changeGameType(gameType)">
+    <mat-radio-button [checked]="isCurrentGameType(gameType)"></mat-radio-button>
+    <div fxLayout="row" fxFlex fxLayoutAlign="start center">
+      <span fxFlex>{{ gameType }}</span>
+    </div>
+  </button>
+</mat-menu>

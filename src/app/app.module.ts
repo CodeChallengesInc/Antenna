@@ -47,6 +47,7 @@ import { TestAntDialogComponent } from './components/test-ant-dialog/test-ant-di
 import { ViewCodeDialogComponent } from './components/view-code-dialog/view-code-dialog.component';
 import { AntErrorDialogComponent } from './components/ant-error-dialog/ant-error-dialog.component';
 import { LoginComponent } from './components/login/login.component';
+import { GameTypeSelectorComponent } from './components/game-type-selector/game-type-selector.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { LoginComponent } from './components/login/login.component';
     IconSizeDirective,
     RestrictedValuesDirective,
     ThemeSelectorComponent,
+    GameTypeSelectorComponent,
     TestAntDialogComponent,
     ViewCodeDialogComponent,
     AntErrorDialogComponent,
