@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { Ant } from 'src/app/models/board';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { ViewCodeDialogComponent } from '../view-code-dialog/view-code-dialog.component';
 import { ThemeService } from '../../services/theme.service';
 import { AntErrorDialogComponent } from '../ant-error-dialog/ant-error-dialog.component';
