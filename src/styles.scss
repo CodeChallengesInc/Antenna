@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@use '@angular/material' as mat;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; overflow: hidden; }
@@ -8,11 +8,20 @@ body { margin: 0; font-family: 'Quicksand', "Helvetica Neue", sans-serif; overfl
 @import './app/components/edit-ant/edit-ant.theme';
 @import './app/views/home/home.theme';
 
-$custom-typography: mat-typography-config(
+$custom-typography: mat.m2-define-typography-config(
   $font-family: "Quicksand"
 );
 
-@include mat-core($custom-typography);
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy($custom-typography);`
+@include mat.all-component-typographies($custom-typography);
+@include mat.core();
 
 @mixin custom-components-theme($theme) {
   @include ant-grid-theme($theme);
@@ -22,38 +31,38 @@ $custom-typography: mat-typography-config(
 }
 
 .light-deeppurple-amber {
-  $light-primary: mat-palette($mat-deep-purple);
-  $light-accent: mat-palette($mat-amber);
-  $light-warn: mat-palette($mat-red);
-  $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
-  @include angular-material-theme($light-theme);
+  $light-primary: mat.m2-define-palette(mat.$m2-deep-purple-palette);
+  $light-accent: mat.m2-define-palette(mat.$m2-amber-palette);
+  $light-warn: mat.m2-define-palette(mat.$m2-red-palette);
+  $light-theme: mat.m2-define-light-theme($light-primary, $light-accent, $light-warn);
+  @include mat.all-component-themes($light-theme);
   @include custom-components-theme($light-theme);
 }
 
 .light-indigo-pink {
-  $light-primary: mat-palette($mat-indigo);
-  $light-accent: mat-palette($mat-pink);
-  $light-warn: mat-palette($mat-red);
-  $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
-  @include angular-material-theme($light-theme);
+  $light-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+  $light-accent: mat.m2-define-palette(mat.$m2-pink-palette);
+  $light-warn: mat.m2-define-palette(mat.$m2-red-palette);
+  $light-theme: mat.m2-define-light-theme($light-primary, $light-accent, $light-warn);
+  @include mat.all-component-themes($light-theme);
   @include custom-components-theme($light-theme);
 }
 
 .dark-purple-green {
-  $dark-primary: mat-palette($mat-purple);
-  $dark-accent: mat-palette($mat-green);
-  $dark-warn: mat-palette($mat-red);
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include angular-material-theme($dark-theme);
+  $dark-primary: mat.m2-define-palette(mat.$m2-purple-palette);
+  $dark-accent: mat.m2-define-palette(mat.$m2-green-palette);
+  $dark-warn: mat.m2-define-palette(mat.$m2-red-palette);
+  $dark-theme: mat.m2-define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include mat.all-component-themes($dark-theme);
   @include custom-components-theme($dark-theme);
 }
 
 .dark-pink-bluegrey {
-  $dark-primary: mat-palette($mat-pink);
-  $dark-accent: mat-palette($mat-blue-grey);
-  $dark-warn: mat-palette($mat-red);
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  @include angular-material-theme($dark-theme);
+  $dark-primary: mat.m2-define-palette(mat.$m2-pink-palette);
+  $dark-accent: mat.m2-define-palette(mat.$m2-blue-grey-palette);
+  $dark-warn: mat.m2-define-palette(mat.$m2-red-palette);
+  $dark-theme: mat.m2-define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  @include mat.all-component-themes($dark-theme);
   @include custom-components-theme($dark-theme);
 }
 

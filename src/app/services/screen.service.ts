@@ -11,6 +11,10 @@ export class ScreenService {
   isMobile$: Observable<boolean>;
 
   constructor(breakpointObserver: BreakpointObserver) {
-    this.isMobile$ = breakpointObserver.observe(`(max-width: 800px)`).pipe(map(result => result.matches));
+    this.isMobile$ = breakpointObserver.observe(`(max-width: 800px)`).pipe(map(
+      result =>
+        {
+          return result.matches
+  }));
   }
 }

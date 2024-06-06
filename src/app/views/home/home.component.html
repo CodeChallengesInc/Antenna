@@ -10,14 +10,14 @@
   </mat-toolbar>
 
   <div fxLayout="column" class="home__content" fxFlex [fxLayoutGap]="(isMobile$ | async) ? '32px' : '64px'" fxLayoutAlign="start center">
-    <div [style.marginTop]="(isMobile$ | async) ? '8px' : '32px'" [class.mat-display-3]="!(isMobile$ | async)" [class.mat-display-1]="isMobile$ | async">
+    <div [style.marginTop]="(isMobile$ | async) ? '8px' : '32px'" [class.mat-headline-2]="!(isMobile$ | async)" [class.mat-headline-4]="isMobile$ | async">
       Welcome {{ username }}!
     </div>
     <div fxLayout="row"  fxLayoutAlign="center center" [fxLayoutGap]="(isMobile$ | async) ? '16px' : '64px'">
       <button mat-raised-button class="home__tile" [class.home__tile--mobile]="isMobile$ | async" (click)="createGame()">
         <div fxLayout="column" fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">show_chart</mat-icon>
-          <div class="mat-subheading-2" [style.marginBottom]="(isMobile$ | async) ? '0' : '16px'">
+          <div class="mat-subtitle-1" [style.marginBottom]="(isMobile$ | async) ? '0' : '16px'">
             New Game
           </div>
           <div class="mat-caption" *ngIf="!(isMobile$ | async)">
@@ -29,7 +29,7 @@
       <button mat-raised-button class="home__tile" routerLink="/edit-ants" [class.home__tile--mobile]="isMobile$ | async">
         <div fxLayout="column" fxLayoutAlign="center center">
           <mat-icon appIconSize="64px">bug_report</mat-icon>
-          <div class="mat-subheading-2 home__button-title" [style.marginBottom]="(isMobile$ | async) ? '0' : '16px'">
+          <div class="mat-subtitle-1 home__button-title" [style.marginBottom]="(isMobile$ | async) ? '0' : '16px'">
             Ant Collection
           </div>
           <div class="mat-caption" *ngIf="!(isMobile$ | async)">

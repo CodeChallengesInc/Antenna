@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,7 +27,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { CodeEditorModule } from '@ngstack/code-editor';
 
 
-import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { MARKED_OPTIONS, MarkdownModule, provideMarkdown } from 'ngx-markdown';
 import { RulesDialogComponent } from './components/rules-dialog/rules-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateAntDialogComponent } from './components/create-ant-dialog/create-ant-dialog.component';
@@ -48,72 +48,57 @@ import { ViewCodeDialogComponent } from './components/view-code-dialog/view-code
 import { AntErrorDialogComponent } from './components/ant-error-dialog/ant-error-dialog.component';
 import { LoginComponent } from './components/login/login.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    GameComponent,
-    AntGridComponent,
-    LeaderboardComponent,
-    RulesDialogComponent,
-    CreateAntDialogComponent,
-    EditAntsComponent,
-    EditAntComponent,
-    ConfirmDeleteDialogComponent,
-    IconSizeDirective,
-    RestrictedValuesDirective,
-    ThemeSelectorComponent,
-    TestAntDialogComponent,
-    ViewCodeDialogComponent,
-    AntErrorDialogComponent,
-    LoginComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FlexLayoutModule,
-    AppRoutingModule,
-    MatButtonModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatRadioModule,
-    MatCardModule,
-    MatInputModule,
-    FormsModule,
-    MatGridListModule,
-    MatTableModule,
-    MatSortModule,
-    MatIconModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatSidenavModule,
-    MatMenuModule,
-    MatRippleModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatSnackBarModule,
-    CodeEditorModule.forRoot(),
-    MarkdownModule.forRoot({
-      markedOptions: {
-        provide: MarkedOptions,
-        useValue: {
-          gfm: true,
-          breaks: false,
-          pedantic: false,
-          smartLists: true,
-          smartypants: false,
-        },
-      },
-    }),
-  ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    RulesDialogComponent,
-    CreateAntDialogComponent,
-    ViewCodeDialogComponent,
-    AntErrorDialogComponent,
-  ]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        GameComponent,
+        AntGridComponent,
+        LeaderboardComponent,
+        RulesDialogComponent,
+        CreateAntDialogComponent,
+        EditAntsComponent,
+        EditAntComponent,
+        ConfirmDeleteDialogComponent,
+        IconSizeDirective,
+        RestrictedValuesDirective,
+        ThemeSelectorComponent,
+        TestAntDialogComponent,
+        ViewCodeDialogComponent,
+        AntErrorDialogComponent,
+        LoginComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FlexLayoutModule,
+        AppRoutingModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatRadioModule,
+        MatCardModule,
+        MatInputModule,
+        FormsModule,
+        MatGridListModule,
+        MatTableModule,
+        MatSortModule,
+        MatIconModule,
+        MatDialogModule,
+        MatTooltipModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatRippleModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+        MatTabsModule,
+        MatSnackBarModule,
+        CodeEditorModule.forRoot(),
+        MarkdownModule.forRoot()], providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideMarkdown({
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useValue: {
+                    gfm: true,
+                    breaks: false,
+                    pedantic: false,
+                },
+            },
+        }), provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

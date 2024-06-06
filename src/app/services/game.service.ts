@@ -33,7 +33,6 @@ export class GameService {
         if (value.gameStatus.elapsedTicks === this.maximumTicks) {
           // Use settimeout here so a value is still emitted even when loading a completed board
           setTimeout(() => {
-            stopSubject.next();
             stopSubject.complete();
           }, 0);
 
@@ -48,7 +47,7 @@ export class GameService {
 
   createGame$(): Observable<string> {
     const url = `${environment.backendApi}/game`;
-    return this.httpClient.post(url, {}, { responseType: 'text' });
+    return this.httpClient.post(url, {gameType:'LoneAnt'}, { responseType: 'text' });
   }
 
   createTestGame$(antName: string, code: string): Observable<string> {

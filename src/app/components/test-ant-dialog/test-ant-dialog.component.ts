@@ -28,9 +28,9 @@ export class TestAntDialogComponent {
     dialogRef: MatDialogRef<TestAntDialogComponent>,
     gameService: GameService) {
     this.isMobile$ = screen.isMobile$;
-    this.board$ = gameService.createTestGame$(data.antName, data.code).pipe(switchMap(gameId => {
-      gameId = gameId;
-      return gameService.getBoard$(gameId);
+    this.board$ = gameService.createTestGame$(data.antName, data.code).pipe(switchMap(id => {
+      this.gameId = id;
+      return gameService.getBoard$(id);
     }));
     // Remove this game when closed / no longer needed
     dialogRef.afterClosed().subscribe(() => {
