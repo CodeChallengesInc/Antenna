@@ -21,4 +21,20 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
+    - name: Run tests with coverage
+      run: npx nyc npm test
+    - name: Extract coverage
+      id: coverage
+      run: echo "::set-output name=coverage::$(npx nyc report --reporter=text-summary)"
+    - name: Post coverage comment
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const coverage = `${{steps.coverage.outputs.coverage}}`;
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Test Coverage\n\`\`\`\n${coverage}\n\`\`\``
+          });
