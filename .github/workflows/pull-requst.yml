@@ -22,7 +22,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Run tests with coverage
-      run: npx nyc npm test -- --configuration=ci
+      run: npx nyc npm run test-ci
     - name: Extract coverage
       id: coverage
       run: echo "::set-output name=coverage::$(npx nyc report --reporter=text-summary)"
