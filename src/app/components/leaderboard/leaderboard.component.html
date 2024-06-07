@@ -8,7 +8,7 @@
       <td mat-cell *matCellDef="let ant">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
           <div class="leaderboard__ant" [style.backgroundColor]="ant.color" [style.borderColor]="getBorderColor(ant)"></div>
-          <div>{{ ant.creator }} - {{ ant.name }}</div>
+          <div>{{ ant.name }}</div>
         </div>
       </td>
     </ng-container>
