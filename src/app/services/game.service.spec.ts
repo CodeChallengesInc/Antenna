@@ -77,7 +77,7 @@ describe('GameService', () => {
 
     const req = httpMock.expectOne(`${environment.backendApi}/test`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ antName, code });
+    expect(req.request.body).toEqual({ name: antName, code, gameType: GameType.LoneAnt});
     req.flush('testGameId');
   });
 });
