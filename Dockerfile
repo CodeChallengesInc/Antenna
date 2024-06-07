@@ -1,13 +1,15 @@
-FROM node:alpine as build
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-RUN npm install -g @angular/cli
-RUN ng build --configuration production --output-path=/dist
+FROM node:latest as build
 
-FROM nginx:alpine
-COPY --from=build /dist /usr/share/nginx/html
-COPY --from=build /app/src/assets /usr/share/nginx/html/assets
-RUN ls /usr/share/nginx/html
-CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+WORKDIR /usr/local/app
+
+COPY ./ /usr/local/app/
+
+RUN npm install
+
+RUN npm run build
+
+FROM nginx:latest
+
+COPY --from=build /usr/local/app/dist/cci/browser /usr/share/nginx/html
+
+EXPOSE 80
