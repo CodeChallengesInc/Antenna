@@ -93,7 +93,7 @@ export class AntGridComponent implements AfterViewInit, OnChanges {
         const diameter = this.cellSize * 3;
         if (this.mousePos.x > (centerX - diameter) && this.mousePos.x < (centerX + diameter) &&
         this.mousePos.y > (centerY - diameter) && this.mousePos.y < (centerY + diameter)) {
-          const antName = ant.antName;
+          const antName = `${ant.creator} - ${ant.name}`;
           this.drawLabel(antName, centerX, centerY, diameter);
         }
       });
